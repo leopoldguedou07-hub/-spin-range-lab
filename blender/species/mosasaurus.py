@@ -318,17 +318,17 @@ def flipper(G, fwd, up, side, length, rng, hind=False):
         parts.append(ellipsoid(cz + off, (0.025 * length, 0.028 * length, 0.016 * length),
                                frame(ax, wd) @ rot((0, 0, 1), rng.uniform(-0.3, 0.3))))
     # digits
-    spread = [-0.3, -0.12, 0.02, 0.15, 0.3]
+    spread = [-0.2, -0.08, 0.02, 0.11, 0.2]
     nph = [6, 9, 10, 8, 5] if not hind else [5, 7, 8, 7, 4]
     for d in range(5):
         dd = norm(ax + wd * spread[d])
-        start = cz + ax * 0.09 * length + wd * (d - 2) * 0.045 * length
-        seg = 0.055 * length * (1.0 if d in (1, 2, 3) else 0.85)
+        start = cz + ax * 0.09 * length + wd * (d - 2) * 0.058 * length
+        seg = 0.062 * length * (1.0 if d in (1, 2, 3) else 0.85)
         pts = [start]
         for k in range(nph[d]):
             bend = wd * 0.012 * k * (1 if d > 2 else -1) * length
             pts.append(pts[-1] + dd * seg * (1 - 0.05 * k) + bend * 0.2)
-        rad = list(np.linspace(0.02 * length, 0.008 * length, len(pts)))
+        rad = list(np.linspace(0.03 * length, 0.012 * length, len(pts)))
         ph = digit(pts, rad, knuckle=1.35, seed=int(rng.integers(1e4)))
         # flatten phalanges into the paddle plane
         c0 = np.mean(pts, axis=0)

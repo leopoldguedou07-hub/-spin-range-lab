@@ -29,7 +29,7 @@ SPEC = dict(
         'Queue': [f'{P}_caudal_{i:02d}' for i in range(3, 10)],
     },
     closeups={'skull': [f'{P}_skull', f'{P}_mandible', f'{P}_cervical_01', f'{P}_cervical_02']},
-    closeup_dir=(0.8, -1.0, 0.1),
+    closeup_dir=(0.15, -1.0, 0.1),
     views={'34': (0.6, -1.0, 0.15), 'side': (0.0, -1.0, 0.02)},
 )
 
@@ -89,10 +89,10 @@ def bones():
     nlen = [0.16, 0.42, 0.62, 0.74, 0.84, 0.92, 0.98, 1.02, 1.02, 0.98, 0.9, 0.78, 0.62]
     for i, (c, fwd, cl) in enumerate(place(NECK, nlen, 0.035, s0=0.04), start=1):
         t = (i - 1) / 12
-        cr = 0.075 + 0.14 * t ** 1.3
-        p = dict(cr=cr, cl=cl, ends='pro', canal=cr * 0.35, sl=0.05 + 0.25 * t ** 2, tilt=0.1, sw=cl * 0.25,
-                 st=cr * 0.2, tl=cr * 1.1, tr=cr * 0.22, tu=-cr * 0.4, tb=cl * 0.05, zyg=cr * 0.35,
-                 pleuro=0.55, knob=0.6)
+        cr = 0.1 + 0.15 * t ** 1.2
+        p = dict(cr=cr, cl=cl, ends='pro', canal=cr * 0.35, sl=0.08 + 0.22 * t ** 1.5, tilt=0.05, sw=cl * 0.16,
+                 st=cr * 0.16, tl=cr * 1.1, tr=cr * 0.22, tu=-cr * 0.4, tb=cl * 0.05, zyg=cr * 0.4,
+                 pleuro=0.55, knob=0.15)
         if i == 1:
             p.update(cl=0.12, sl=0, tl=0.1, pleuro=0, ends='flat')
         up = up_of(fwd)
@@ -129,7 +129,7 @@ def bones():
     sac = []
     for k in range(5):
         c = V([-0.98 - 0.3 * k, 0, 4.22 - 0.04 * k])
-        sac.append(vertebra(c, (1, 0, 0), (0, 0, 1), dict(cr=0.2, cl=0.28, canal=0.05, sl=0.75, tilt=0.0, sw=0.28,
+        sac.append(vertebra(c, (1, 0, 0), (0, 0, 1), dict(cr=0.2, cl=0.28, canal=0.05, sl=0.6, tilt=0.0, sw=0.14,
                                                             st=0.08, tl=0.0), rng))
         for sg in (-1, 1):
             sac.append(ribbon([c + V([0, sg * 0.15, 0.1]), c + V([0, sg * 0.45, 0.2]), c + V([0.02, sg * 0.62, 0.15])],
@@ -199,7 +199,7 @@ def skull_frame(O):
 
 def skull(O):
     R, L = skull_frame(O)
-    prof = [(0.0, -0.04), (0.0, 0.14), (0.1, 0.27), (0.2, 0.37), (0.29, 0.47), (0.36, 0.47), (0.43, 0.38),
+    prof = [(0.0, -0.04), (0.0, 0.14), (0.1, 0.27), (0.2, 0.4), (0.27, 0.54), (0.35, 0.56), (0.43, 0.42),
             (0.52, 0.24), (0.66, 0.14), (0.77, 0.08), (0.8, -0.02), (0.78, -0.09), (0.6, -0.1),
             (0.38, -0.09), (0.2, -0.1), (0.08, -0.14)]
     Rp = R @ np.stack([V([1, 0, 0]), V([0, 0, 1]), V([0, -1, 0])], 1)
@@ -210,10 +210,10 @@ def skull(O):
                           [0.035, 0.03, 0.035]))                                     # maxilla / jugal bar
         parts.append(ellipsoid(L(0.7, sg * 0.08, 0.0), (0.12, 0.07, 0.07), R))       # broad snout
         parts.append(tube([L(0.06, sg * 0.1, 0.12), L(0.08, sg * 0.14, -0.12)], [0.03, 0.035]))  # quadrate
-        parts.append(tube([L(0.24, sg * 0.1, 0.28), L(0.33, sg * 0.07, 0.43)], [0.035, 0.03]))   # nasal arch strut
+        parts.append(tube([L(0.24, sg * 0.1, 0.28), L(0.31, sg * 0.07, 0.52)], [0.035, 0.03]))   # nasal arch strut
     sk = union(0.03, *parts)
     for sg in (-1, 1):
-        for c, r_, k in [((0.33, sg * 0.1, 0.36), (0.11, 0.09, 0.08), 0.02),    # giant nares on the arch
+        for c, r_, k in [((0.32, sg * 0.1, 0.44), (0.1, 0.09, 0.08), 0.02),    # giant nares on the arch
                          ((0.17, sg * 0.16, 0.19), (0.065, 0.1, 0.07), 0.015),  # orbit
                          ((0.47, sg * 0.15, 0.1), (0.08, 0.1, 0.045), 0.015),   # antorbital fenestra
                          ((0.08, sg * 0.16, 0.04), (0.035, 0.1, 0.075), 0.01),  # lateral temporal
@@ -258,7 +258,7 @@ def spatula_tooth(root, tip, lat_dir, w, seed):
 def teeth(O, rng):
     R, L = skull_frame(O)
     out = []
-    for jaw, zb, zt in (('upper', -0.08, -0.16), ('lower', -0.12, -0.04)):
+    for jaw, zb, zt in (('upper', -0.07, -0.2), ('lower', -0.13, -0.02)):
         for sg, side in ((1, 'L'), (-1, 'R')):
             for k in range(6):
                 u = 0.76 - 0.045 * k
@@ -266,7 +266,7 @@ def teeth(O, rng):
                 root = L(u, yy, zb)
                 tip = L(u + 0.012, yy * 1.02, zt) + (rng.normal(size=3) * 0.004)
                 out.append((f'tooth_{jaw}_{side}_{k + 1:02d}',
-                            spatula_tooth(root, tip, R[:, 1], 0.026 - 0.0015 * k, int(rng.integers(1e4)))))
+                            spatula_tooth(root, tip, R[:, 1], 0.03 - 0.0015 * k, int(rng.integers(1e4)))))
     return out
 
 
@@ -277,9 +277,9 @@ def front(add, side, sg, dx, rng):
     W = V([2.4 + dx, 0.8 * sg, 1.0])             # wrist
     lat = V([0, sg, 0])
     # scapula: long curved blade up-back over the ribs + fused oval coracoid
-    blade = [G + V([0.05, 0.02 * sg, 0.15]), G + V([-0.35, -0.02 * sg, 0.62]), G + V([-0.85, -0.12 * sg, 1.02]),
-             G + V([-1.35, -0.28 * sg, 1.25])]
-    sc = ribbon(blade, [0.2, 0.15, 0.2, 0.34], [0.07, 0.05, 0.045, 0.03], lambda t: V([1, 0, 1]))
+    blade = [G + V([0.05, 0.02 * sg, 0.15]), G + V([-0.4, 0.04 * sg, 0.55]), G + V([-0.9, 0.0, 0.85]),
+             G + V([-1.4, -0.12 * sg, 1.0])]
+    sc = ribbon(blade, [0.22, 0.17, 0.24, 0.36], [0.08, 0.06, 0.05, 0.035], lambda t: V([1, 0, 1]))
     acr = ribbon([G + V([0.2, 0.05 * sg, 0.25]), G + V([0.05, 0.08 * sg, 0.55])], [0.12, 0.06], [0.04, 0.03],
                  V([1, 0, 0]))
     cor = ellipsoid(G + V([0.35, -0.05 * sg, -0.05]), (0.3, 0.06, 0.26), frame(V([1, 0, 0.4]), V([0, 0, 1])))
@@ -288,13 +288,13 @@ def front(add, side, sg, dx, rng):
     add(f'scapula_{side}', ['FRONT_LIMBS', f'FRONT_LIMBS_{side}'], scap.displace(0.008, 6, seed=40 + sg), 0.012,
         weight=1.1, min_tris=1800)
     # humerus: very long straight column, flared ends, discreet deltopectoral crest
-    hum = long_bone(G + V([0, 0, -0.08]), E, 0.3, 0.13, 0.28, lat, prox='plateau', dist='condyles', flat=1.35,
+    hum = long_bone(G + V([0, 0, -0.08]), E, 0.33, 0.17, 0.3, lat, prox='plateau', dist='condyles', flat=1.35,
                     crests=[(0.08, 0.38, V([1, 0.3 * sg, 0]), 0.05, 0.05)], cond_sep=0.1, seed=50 + sg)
     add(f'humerus_{side}', ['FRONT_LIMBS', f'FRONT_LIMBS_{side}'], hum, 0.011, weight=1.1, min_tris=1500)
-    ul = long_bone(E + V([-0.08, 0.02 * sg, 0.02]), W + V([-0.05, 0, 0.04]), 0.2, 0.085, 0.13, lat, prox='cup',
+    ul = long_bone(E + V([-0.08, 0.02 * sg, 0.02]), W + V([-0.05, 0, 0.04]), 0.22, 0.1, 0.15, lat, prox='cup',
                    dist='flat', seed=60 + sg, extra=[sphere(E + V([-0.18, 0, 0.1]), 0.1)])
     add(f'ulna_{side}', ['FRONT_LIMBS', f'FRONT_LIMBS_{side}'], ul, 0.01, min_tris=900)
-    ra = long_bone(E + V([0.1, 0.02 * sg, -0.06]), W + V([0.08, -0.04 * sg, 0.04]), 0.13, 0.07, 0.13, lat,
+    ra = long_bone(E + V([0.1, 0.02 * sg, -0.06]), W + V([0.08, -0.04 * sg, 0.04]), 0.15, 0.085, 0.14, lat,
                    prox='cup', dist='flat', seed=70 + sg)
     add(f'radius_{side}', ['FRONT_LIMBS', f'FRONT_LIMBS_{side}'], ra, 0.009, min_tris=800)
     add(f'manus_{side}', ['FRONT_LIMBS', f'FRONT_LIMBS_{side}'], manus(W, sg, rng), 0.008, weight=1.2,
@@ -309,7 +309,7 @@ def manus(W, sg, rng):
         a = np.radians(np.interp(i, [0, 4], [-80, 80])) * sg
         top = W + V([0.08 + 0.1 * np.cos(a), 0.15 * np.sin(a), -0.14])
         bot = top + V([0.05 * np.cos(a), 0.04 * np.sin(a), -0.82 + 0.06 * abs(i - 2)])
-        r = 0.055 - 0.004 * abs(i - 2)
+        r = 0.075 - 0.005 * abs(i - 2)
         parts.append(digit([top, (top + bot) / 2, bot], [r * 1.25, r * 0.85, r * 1.2], knuckle=1.0,
                            seed=int(rng.integers(1e4))))
         tip = bot + V([0.06 * np.cos(a), 0.04 * np.sin(a), -0.06])
@@ -326,12 +326,12 @@ def hind(add, side, sg, dx, rng):
     K = V([-1.35 + dx * 0.3, 0.74 * sg, 1.62])   # knee (femur ~2 m)
     Ank = V([-1.5 + dx, 0.72 * sg, 0.42])        # ankle
     lat = V([0, sg, 0])
-    fem = long_bone(A + V([0, 0.2 * sg, -0.05]), K, 0.26, 0.15, 0.26, lat, prox='ball', dist='condyles',
+    fem = long_bone(A + V([0, 0.2 * sg, -0.05]), K, 0.3, 0.19, 0.3, lat, prox='ball', dist='condyles',
                     head_off=0.2, head_r=0.18, flat=1.5, cond_sep=0.11, seed=80 + sg,
                     extra=[ellipsoid(A + V([0.0, 0.35 * sg, -0.05]), (0.1, 0.07, 0.12)),             # gr. trochanter
                            ellipsoid(A + V([-0.1, 0.2 * sg, -0.7]), (0.05, 0.08, 0.18))])            # 4th trochanter
     add(f'femur_{side}', ['HIND_LIMBS', f'HIND_LIMBS_{side}'], fem, 0.011, weight=1.1, min_tris=1500)
-    tib = long_bone(K + V([0, -0.02 * sg, -0.1]), Ank, 0.22, 0.1, 0.16, lat, prox='plateau', dist='flat',
+    tib = long_bone(K + V([0, -0.02 * sg, -0.1]), Ank, 0.25, 0.13, 0.19, lat, prox='plateau', dist='flat',
                     crests=[(0.03, 0.3, V([1, 0.3 * sg, 0]), 0.06, 0.05)], seed=90 + sg)
     add(f'tibia_{side}', ['HIND_LIMBS', f'HIND_LIMBS_{side}'], tib, 0.01, min_tris=1100)
     fib = long_bone(K + V([-0.05, 0.16 * sg, -0.14]), Ank + V([-0.05, 0.13 * sg, 0.05]), 0.08, 0.045, 0.08, lat,
