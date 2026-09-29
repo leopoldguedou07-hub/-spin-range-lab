@@ -62,11 +62,11 @@ def carapace_shape():
         lon = np.arctan2(q[:, 1], q[:, 0])
         lat = np.arcsin(np.clip(q[:, 2] / np.maximum(np.linalg.norm(q, axis=1), 1e-9), -1, 1))
         u, v = lon * 0.84, lat * 0.84
-        r = hex_rosette(u, v, 0.06)
+        r = hex_rosette(u, v, 0.075)
         boss = np.exp(-(r / 0.28) ** 2)
         ring = np.exp(-((r - 0.62) / 0.08) ** 2)
         suture = np.clip((r - 0.86) / 0.14, 0, 1) ** 2
-        return d - 0.012 * boss - 0.005 * ring + 0.009 * suture
+        return d - 0.022 * boss - 0.01 * ring + 0.016 * suture
     shell = custom(f, E.lo - 0.05, E.hi + 0.05)
     cut = box(C0 + V([0, 0, 0.5]), (1.2, 0.9, 0.5))          # keep the upper dome only
     rim = tube([C0 + V([RAD[0] * np.cos(a), RAD[1] * np.sin(a), 0.0]) for a in np.linspace(0, 2 * np.pi, 33)],
@@ -193,7 +193,7 @@ def joints(side, sg, a):
     E = G + V([-0.08, 0.03 * sg, -0.3])
     W = E + V([0.05, 0.0, -0.24])
     Kn = A + V([0.1, 0.03 * sg, -0.36])
-    return dict(G=G, E=E, W=W, A=A, K=Kn, Ank=Kn + V([-0.06, 0.0, -0.3]))
+    return dict(G=G, E=E, W=W, A=A, K=Kn, Ank=Kn + V([-0.06, 0.0, -0.37]))
 
 
 CFG = dict(
