@@ -3,7 +3,7 @@
   "center_studs": [
    7.9345,
    -0.0001,
-   3.1354
+   4.0042
   ],
   "tris": 4320,
   "bones": 48
@@ -12,7 +12,7 @@
   "center_studs": [
    7.8053,
    -0.0002,
-   3.343
+   4.2119
   ],
   "tris": 4000,
   "bones": 1
@@ -21,16 +21,16 @@
   "center_studs": [
    7.7847,
    -0.0009,
-   3.167
+   4.0359
   ],
   "tris": 1500,
   "bones": 1
  },
  "Os_Vertebre_Plesiosaurus": {
   "center_studs": [
-   1.4425,
+   1.4395,
    0.0031,
-   2.4446
+   3.3135
   ],
   "tris": 19500,
   "bones": 59
@@ -38,8 +38,8 @@
  "Os_Cote_Plesiosaurus": {
   "center_studs": [
    -1.6288,
-   0.004,
-   0.9473
+   0.0039,
+   1.8162
   ],
   "tris": 19500,
   "bones": 39
@@ -48,45 +48,45 @@
   "center_studs": [
    0.1647,
    -0.0059,
-   0.754
+   1.6212
   ],
-  "tris": 7152,
+  "tris": 6576,
   "bones": 2
  },
  "Os_Nageoire_Plesiosaurus": {
   "center_studs": [
-   -0.7842,
-   -0.0004,
-   0.4724
+   -0.8629,
+   0.0014,
+   0.8499
   ],
-  "tris": 7996,
+  "tris": 11458,
   "bones": 2
  },
  "Os_Bassin_Plesiosaurus": {
   "center_studs": [
    -4.1067,
    -0.0018,
-   0.8277
+   1.6966
   ],
-  "tris": 6000,
+  "tris": 5518,
   "bones": 1
  },
  "Os_NageoireArriere_Plesiosaurus": {
   "center_studs": [
-   -5.2308,
-   0.002,
-   0.3244
+   -5.3003,
+   -0.0029,
+   0.7549
   ],
-  "tris": 7000,
+  "tris": 8528,
   "bones": 2
  },
  "Os_Queue_Plesiosaurus": {
   "center_studs": [
    -6.5323,
    -0.001,
-   1.1465
+   2.0154
   ],
-  "tris": 5280,
+  "tris": 4922,
   "bones": 28
  }
 }
