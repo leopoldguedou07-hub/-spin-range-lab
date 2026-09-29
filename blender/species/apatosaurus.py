@@ -144,8 +144,8 @@ def bones():
         lat = V([0, sg, 0])
         # forelimb (shorter than hind)
         G = sh + V([0.25, 0.85 * sg, -1.2])
-        E = G + V([-0.05, 0.03 * sg, -1.1])
-        W = E + V([0.1 + 0.08 * sg, -0.02 * sg, -0.85])
+        E = G + V([-0.05, 0.03 * sg, -1.17])
+        W = E + V([0.1 + 0.08 * sg, -0.02 * sg, -0.93])
         sc = ornitho.scapula(G, sg, 1.7, 0.45, back=1.2, thick=0.07, cor=0.6)
         add(f'scapula_{side}', ['FRONT_LIMBS', f'FRONT_LIMBS_{side}'], sc.displace(0.008, 6, seed=40 + sg), 0.01,
             weight=1.1, min_tris=1800)
