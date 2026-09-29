@@ -92,7 +92,7 @@ def flipper(G, sg, length, rng, hind=False):
     """Hydrofoil paddle: short broad propodial (humerus/femur), block-like
     epipodials, then 5 digits of many pebble phalanges packed into a long
     wing swept backward, trailing edge longer."""
-    out_ = norm(V([-0.35, sg * 1.0, -0.12]))                       # paddle axis: outward, back, a bit down
+    out_ = norm(V([-0.35, sg * 1.0, -0.38]))                       # paddle axis: outward, back and down
     back = norm(V([-1, 0, 0]) - out_ * (out_ @ V([-1, 0, 0])))
     n_ = np.cross(out_, back)
     Lp = length * 0.26
@@ -107,7 +107,7 @@ def flipper(G, sg, length, rng, hind=False):
         parts.append(ellipsoid(c, (length * 0.04, length * 0.032, length * 0.014), np.stack([out_, back, n_], 1)))
     base = prop_end + out_ * length * 0.1
     for d in range(5):
-        off = (d - 2) * length * 0.028
+        off = (d - 2) * length * 0.05
         n_ph = [7, 10, 11, 10, 8][d]
         sweep = 0.15 + 0.1 * d                                       # posterior digits swept back more
         dl = length * (0.58 + 0.05 * (d in (1, 2, 3)))
@@ -116,8 +116,8 @@ def flipper(G, sg, length, rng, hind=False):
         for q in range(n_ph):
             t = q / (n_ph - 1)
             c = start + (end - start) * (t ** 0.95)
-            r = length * 0.018 * (1 - 0.7 * t) * (1.1 if d in (1, 2) else 0.9)
-            parts.append(ellipsoid(c, (r * 1.2, r * 1.05, r * 0.55), np.stack([out_, back, n_], 1)))
+            r = length * 0.03 * (1 - 0.6 * t) * (1.1 if d in (1, 2) else 0.9)   # pebbles touch each other
+            parts.append(ellipsoid(c, (r * 1.25, r * 1.05, r * 0.55), np.stack([out_, back, n_], 1)))
     return union(length * 0.006, *parts).displace(length * 0.002, 45 / length, seed=int(rng.integers(1e4)))
 
 
