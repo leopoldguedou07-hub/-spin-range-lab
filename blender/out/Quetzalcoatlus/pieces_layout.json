@@ -1,0 +1,92 @@
+{
+ "Os_Crane_Quetzalcoatlus": {
+  "center_studs": [
+   10.6255,
+   -0.0007,
+   19.1713
+  ],
+  "tris": 19500,
+  "bones": 2
+ },
+ "Os_Bec_Quetzalcoatlus": {
+  "center_studs": [
+   12.818,
+   0.0012,
+   17.1806
+  ],
+  "tris": 4274,
+  "bones": 1
+ },
+ "Os_Vertebre_Quetzalcoatlus": {
+  "center_studs": [
+   1.3547,
+   0.0018,
+   13.6651
+  ],
+  "tris": 19500,
+  "bones": 22
+ },
+ "Os_Cote_Quetzalcoatlus": {
+  "center_studs": [
+   0.1691,
+   -0.0009,
+   8.8495
+  ],
+  "tris": 4078,
+  "bones": 17
+ },
+ "Os_Bras_Quetzalcoatlus": {
+  "center_studs": [
+   0.7707,
+   0.0008,
+   8.4874
+  ],
+  "tris": 10880,
+  "bones": 8
+ },
+ "Os_Aile_Quetzalcoatlus": {
+  "center_studs": [
+   0.3856,
+   -0.0019,
+   5.6909
+  ],
+  "tris": 11528,
+  "bones": 10
+ },
+ "Os_Bassin_Quetzalcoatlus": {
+  "center_studs": [
+   -2.3416,
+   -0.0002,
+   6.5376
+  ],
+  "tris": 6248,
+  "bones": 1
+ },
+ "Os_Femur_Quetzalcoatlus": {
+  "center_studs": [
+   -1.6782,
+   0.0019,
+   4.9179
+  ],
+  "tris": 2108,
+  "bones": 2
+ },
+ "Os_Tibia_Quetzalcoatlus": {
+  "center_studs": [
+   -2.3009,
+   0.0029,
+   1.884
+  ],
+  "tris": 1984,
+  "bones": 2
+ },
+ "Os_Pied_Quetzalcoatlus": {
+  "center_studs": [
+   -2.4073,
+   -0.0003,
+   0.1647
+  ],
+  "tris": 1800,
+  "bones": 2
+ }
+}
