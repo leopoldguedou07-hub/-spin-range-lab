@@ -1,0 +1,92 @@
+{
+ "Os_Dent_Utahraptor": {
+  "center_studs": [
+   10.5758,
+   -0.0013,
+   9.2493
+  ],
+  "tris": 5220,
+  "bones": 58
+ },
+ "Os_Crane_Utahraptor": {
+  "center_studs": [
+   10.317,
+   -0.0002,
+   9.6946
+  ],
+  "tris": 6500,
+  "bones": 1
+ },
+ "Os_Machoire_Utahraptor": {
+  "center_studs": [
+   10.2548,
+   -0.0014,
+   9.1761
+  ],
+  "tris": 4000,
+  "bones": 2
+ },
+ "Os_Vertebre_Utahraptor": {
+  "center_studs": [
+   2.3612,
+   -0.0016,
+   8.5218
+  ],
+  "tris": 19500,
+  "bones": 24
+ },
+ "Os_Cote_Utahraptor": {
+  "center_studs": [
+   0.9106,
+   0.0054,
+   5.9002
+  ],
+  "tris": 14404,
+  "bones": 25
+ },
+ "Os_Bras_Utahraptor": {
+  "center_studs": [
+   4.5046,
+   0.001,
+   5.4934
+  ],
+  "tris": 6996,
+  "bones": 10
+ },
+ "Os_Griffe_Utahraptor": {
+  "center_studs": [
+   -2.9048,
+   -0.0169,
+   0.8148
+  ],
+  "tris": 4598,
+  "bones": 4
+ },
+ "Os_Bassin_Utahraptor": {
+  "center_studs": [
+   -3.3697,
+   -0.0044,
+   5.8566
+  ],
+  "tris": 9872,
+  "bones": 1
+ },
+ "Os_Femur_Utahraptor": {
+  "center_studs": [
+   -2.9506,
+   -0.0027,
+   4.0974
+  ],
+  "tris": 9920,
+  "bones": 6
+ },
+ "Os_Queue_Utahraptor": {
+  "center_studs": [
+   -11.9371,
+   0.0188,
+   7.1115
+  ],
+  "tris": 17004,
+  "bones": 41
+ }
+}
