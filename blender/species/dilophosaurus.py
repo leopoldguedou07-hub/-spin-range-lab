@@ -50,12 +50,12 @@ def skull(add, R, L, rng):
         weight=2.0, min_tris=6000)
     # twin crests: thin semicircular blades, parallel, from the snout to above the orbit
     Rp = R @ np.stack([V([1, 0, 0]), V([0, 0, 1]), V([0, -1, 0])], 1)
-    arc = [(0.18, 0.0), (0.2, 0.1), (0.3, 0.2), (0.45, 0.25), (0.62, 0.21), (0.8, 0.11), (0.9, 0.0)]
+    arc = [(0.54 - 0.36 * np.cos(a), 0.24 * np.sin(a) ** 0.85) for a in np.linspace(0, np.pi, 17)]   # thin semicircle
     crs = []
     for sg in (-1, 1):
         o = L(0, sg * 0.03 * k, lerp([(0.2, 0.2), (0.55, 0.16), (0.9, 0.09)], 0.5) * k - 0.02)
         poly = [(u * k, v * k + (0.0 if u < 0.25 else 0.0)) for u, v in arc]
-        c = plate(o, Rp, poly, 0.006 * k, 0.003 * k, rnd=0.002 * k)
+        c = plate(o, Rp, poly, 0.005 * k, 0.0025 * k, falloff=0.02 * k, rnd=0.0015 * k)
         crs.append(c)
         # finger-like struts and a thick base along the nasal
         for u in np.linspace(0.25, 0.85, 5):
@@ -66,28 +66,28 @@ def skull(add, R, L, rng):
     add('crest', ['SKULL', 'SKULL_special'], crest, 0.0012, weight=1.3, min_tris=2500)
     out = []
     for side, sg in (('L', 1), ('R', -1)):
-        pts = [L(-0.01 * k, sg * 0.12 * k, -0.11 * k), L(0.25 * k, sg * 0.11 * k, -0.13 * k),
-               L(0.6 * k, sg * 0.07 * k, -0.11 * k), L(0.94 * k, sg * 0.03 * k, -0.09 * k)]
+        pts = [L(-0.01 * k, sg * 0.12 * k, -0.11 * k), L(0.25 * k, sg * 0.11 * k, -0.15 * k),
+               L(0.6 * k, sg * 0.07 * k, -0.15 * k), L(0.94 * k, sg * 0.03 * k, -0.13 * k)]
         m = ribbon(pts, [0.05 * k, 0.07 * k, 0.045 * k, 0.04 * k], [0.015 * k, 0.017 * k, 0.014 * k, 0.014 * k],
                    R[:, 2])
-        m = m.sub(ellipsoid(L(0.26 * k, sg * 0.11 * k, -0.12 * k), (0.08 * k, 0.03 * k, 0.022 * k), R), 0.004)
+        m = m.sub(ellipsoid(L(0.26 * k, sg * 0.11 * k, -0.14 * k), (0.08 * k, 0.03 * k, 0.022 * k), R), 0.004)
         add(f'mandible_{side}', ['SKULL'], m.displace(0.0015, 40, seed=50 + sg).detail(0.002, 70, seed=51 + sg),
             0.0018, weight=1.3, min_tris=2000)
         down, back = -R[:, 2], -R[:, 0]
         # premaxillary teeth, then a gap at the notch, then the maxillary row
         up_u = [0.98, 0.94, 0.9, 0.86] + list(np.linspace(0.74, 0.14, 13))
-        up_pos = [(L(u * k, sg * (0.025 + 0.09 * (1 - u)) * k, (-0.05 if u > 0.8 else -0.075) * k), down, back,
-                   0.05 + 0.012 * np.sin(np.pi * u)) for u in up_u]
-        lo_pos = [(L(u * k, sg * (0.025 + 0.09 * (1 - u)) * k, -0.085 * k), -down, back,
-                   0.04 + 0.01 * np.sin(np.pi * u)) for u in np.linspace(0.93, 0.18, 15)]
+        up_pos = [(L(u * k, sg * (0.035 + 0.09 * (1 - u)) * k, (-0.045 if u > 0.8 else -0.065) * k), down, back,
+                   0.042 + 0.01 * np.sin(np.pi * u)) for u in up_u]
+        lo_pos = [(L(u * k, sg * (0.022 + 0.085 * (1 - u)) * k, -0.115 * k), -down, back,
+                   0.036 + 0.008 * np.sin(np.pi * u)) for u in np.linspace(0.93, 0.18, 15)]
         mk = lambda b, d, bk, h, sd: blade_tooth(b, d, bk, h, sd, curve=0.35, flat=0.35)
         out += tooth_row(f'{P}_tooth_upper_{side}', ['SKULL', 'SKULL_teeth'], mk, up_pos, rng)
         out += tooth_row(f'{P}_tooth_lower_{side}', ['SKULL', 'SKULL_teeth'], mk, lo_pos, rng)
     return out
 
 
-CFG = dict(seed=63, series=ts.series(S, dsl=0.8, csl=0.85, neck_cl=1.2, n_caud=45, robust=0.8),
-           **ts.body(S, hz=1.08, arm=1.1, neck_up=1.4, tail_drop=0.5, fem=0.85))
+CFG = dict(seed=63, series=ts.series(S, dsl=0.8, csl=0.85, neck_cl=0.95, n_caud=45, robust=0.8),
+           **ts.body(S, hz=1.08, arm=1.1, neck_up=1.15, tail_drop=0.5, fem=0.85))
 CFG['arm_sz']['claw'] = 0.12
 CFG.update(skull=skull, skull_dir=(1, 0, -0.1), claw_piece=1)
 
