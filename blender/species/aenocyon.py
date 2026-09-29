@@ -39,7 +39,7 @@ def skull(R, L, rng, add):
     zyg = [tube([L(0.16, sg * 0.04, 0.0), L(0.1, sg * 0.075, 0.005), L(0.04, sg * 0.06, 0.012)],
                 [0.008, 0.01, 0.008]) for sg in (-1, 1)]
     crest = ribbon([L(-0.01, 0, 0.065), L(0.04, 0, 0.11), L(0.11, 0, 0.1)], [0.008, 0.012, 0.006],
-                   [0.003, 0.004, 0.003], R[:, 1])          # high sagittal crest
+                   [0.003, 0.004, 0.003], R[:, 2])          # high sagittal crest (thin blade, tall)
     sk = union(0.004, sk, *zyg, crest, ellipsoid(L(-0.012, 0, -0.005), (0.018, 0.03, 0.013), R),
                *[ellipsoid(L(0.12, sg * 0.03, -0.03), (0.035, 0.012, 0.012), R) for sg in (-1, 1)])  # carnassial roots
     sk = sk.sub(ellipsoid(L(0.12, 0, -0.035), (0.13, 0.022, 0.012), R), 0.003)
