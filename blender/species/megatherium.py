@@ -151,7 +151,7 @@ def joints(side, sg, a):
     E = G + V([-0.2, 0.04 * sg, -0.66])
     W = E + V([0.14, 0.0, -0.58])
     Kn = A + V([0.18 + 0.04 * sg, 0.04 * sg, -0.8])
-    return dict(G=G, E=E, W=W, A=A, K=Kn, Ank=Kn + V([-0.1, 0.02 * sg, -0.76]))
+    return dict(G=G, E=E, W=W, A=A, K=Kn, Ank=Kn + V([-0.1, 0.02 * sg, -0.82]))
 
 
 CFG = dict(
