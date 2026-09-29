@@ -370,8 +370,8 @@ def theropod_arm(add, side, sg, G, E, W, sz, rng, fingers=3, coll='FRONT_LIMBS',
     for f in range(fingers):
         spread = (f - (fingers - 1) / 2) * 0.35
         dd = norm(fdir + V([0, sg * spread * 0.6, 0]))
-        L_ = fl * [0.8, 1.0, 0.9][f]
-        n_ph = [2, 3, 4][f]
+        L_ = fl * [0.8, 1.0, 0.9, 0.6][f]
+        n_ph = [2, 3, 4, 2][f]
         base = W + V([0, sg * (f - 1) * hr * 0.6, -hr * 0.4])
         pts = [base]
         for q in range(n_ph + 1):

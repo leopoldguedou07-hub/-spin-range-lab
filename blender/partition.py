@@ -123,6 +123,100 @@ PARTS = {
         ('Bassin', rx(r'pelvis')), ('Femur', rx(r'femur_', r'tibia_', r'fibula_')), ('Pied', rx(r'pes_')),
         ('Queue', rx(r'caudal_')),
     ],
+    # ---------------------------------------------------------- Épique ---
+    'Plesiosaurus': [
+        ('Dent', rx(r'tooth_')), ('Crane', rx(r'skull')), ('Machoire', rx(r'mandible')),
+        ('Vertebre', rx(r'cervical_', r'dorsal_', r'sacrum')), ('Cote', rx(r'rib_', r'gastralia')),
+        ('Omoplate', rx(r'scapula_')), ('Nageoire', rx(r'flipper_front_')), ('Bassin', rx(r'pelvis')),
+        ('NageoireArriere', rx(r'flipper_hind_')), ('Queue', rx(r'caudal_')),
+    ],
+    'Parasaurolophus': [
+        ('Crane', rx(r'skull')), ('Crete', rx(r'crest')), ('Bec', rx(r'beak')), ('Machoire', rx(r'mandible')),
+        ('Vertebre', rx(r'cervical_', r'dorsal_', r'sacrum', r'ossified_tendons')),
+        ('Cote', rx(r'rib_', r'scapula_', r'humerus_', r'radius_', r'ulna_')), ('Bassin', rx(r'pelvis')),
+        ('Femur', rx(r'femur_', r'tibia_', r'fibula_')), ('Pied', rx(r'pes_', r'manus_')), ('Queue', rx(r'caudal_')),
+    ],
+    'Dilophosaurus': [
+        ('Dent', rx(r'tooth_')), ('Crane', rx(r'skull')), ('Crete', rx(r'crest')), ('Machoire', rx(r'mandible_')),
+        ('Vertebre', rx(r'cervical_', r'dorsal_', r'sacrum')), ('Cote', rx(r'rib_', r'gastralia')),
+        ('Griffe', rx(r'hand_claw_', r'manus_', r'humerus_', r'radius_', r'ulna_', r'scapula_')),
+        ('Bassin', rx(r'pelvis')), ('Femur', rx(r'femur_', r'tibia_', r'fibula_', r'pes_')), ('Queue', rx(r'caudal_')),
+    ],
+    'Mastodon': [
+        ('Dent', rx(r'molar_')), ('Defense', rx(r'tusk_')), ('Crane', rx(r'skull')), ('Machoire', rx(r'mandible')),
+        ('Cote', rx(r'rib_', r'sternum')), ('Bras', rx(r'scapula_', r'humerus_', r'radius_', r'ulna_', r'manus_')),
+        ('Bassin', rx(r'pelvis')), ('Femur', rx(r'femur_', r'patella_', r'tibia_', r'fibula_')), ('Pied', rx(r'pes_')),
+        ('Vertebre', rx(r'cervical_', r'thoracic_', r'lumbar_', r'sacrum', r'caudal_')),
+    ],
+    'Quetzalcoatlus': [
+        ('Crane', rx(r'skull', r'mandible')), ('Bec', rx(r'beak')),
+        ('Vertebre', rx(r'cervical_', r'dorsal_', r'caudal_')), ('Cote', rx(r'rib_', r'sternum')),
+        ('Bras', rx(r'scapulocoracoid_', r'humerus_', r'radius_', r'ulna_')), ('Aile', rx(r'manus_', r'wing_phalanx_')),
+        ('Bassin', rx(r'pelvis')), ('Femur', rx(r'femur_')), ('Tibia', rx(r'tibia_')), ('Pied', rx(r'pes_')),
+    ],
+    'Styracosaurus': [
+        ('Crane', rx(r'skull', r'mandible')), ('Corne', rx(r'horn_')), ('Collerette', rx(r'frill')),
+        ('Bec', rx(r'rostral')), ('Vertebre', rx(r'cervical_', r'dorsal_', r'sacrum', r'ossified_tendons')),
+        ('Cote', rx(r'rib_', r'scapula_', r'humerus_', r'radius_', r'ulna_')), ('Bassin', rx(r'pelvis')),
+        ('Femur', rx(r'femur_', r'tibia_', r'fibula_')), ('Pied', rx(r'pes_', r'manus_')), ('Queue', rx(r'caudal_')),
+    ],
+    'Carcharodontosaurus': [
+        ('Dent', rx(r'tooth_')), ('Crane', rx(r'skull')), ('Machoire', rx(r'mandible_')),
+        ('Vertebre', rx(r'cervical_', r'dorsal_', r'sacrum')), ('Cote', rx(r'rib_', r'gastralia')),
+        ('Bras', rx(r'scapula_', r'humerus_', r'radius_', r'ulna_', r'manus_', r'hand_claw_')),
+        ('Bassin', rx(r'pelvis')), ('Femur', rx(r'femur_', r'tibia_', r'fibula_')), ('Pied', rx(r'pes_')),
+        ('Queue', rx(r'caudal_')),
+    ],
+    'Dunkleosteus': [
+        ('Dent', rx(r'tooth_')), ('Crane', rx(r'skull')), ('Machoire', rx(r'mandible_')),
+        ('Branchie', rx(r'gill_arches')), ('Plaque', rx(r'thoracic_plate')), ('Ceinture', rx(r'pectoral_girdle')),
+        ('Nageoire', rx(r'pectoral_fin_')), ('NageoireDorsale', rx(r'dorsal_fin')),
+        ('Vertebre', lambda n: n.startswith('vertebra_') and num(n) <= 65),
+        ('Queue', rx(r'vertebra_', r'caudal_fin')),
+    ],
+    'Allosaurus': [
+        ('Dent', rx(r'tooth_')), ('Crane', rx(r'skull')), ('Machoire', rx(r'mandible_')),
+        ('Vertebre', rx(r'cervical_', r'dorsal_', r'sacrum')), ('Cote', rx(r'rib_', r'gastralia')),
+        ('Griffe', rx(r'hand_claw_')), ('Bras', rx(r'scapula_', r'humerus_', r'radius_', r'ulna_', r'manus_')),
+        ('Bassin', rx(r'pelvis')), ('Femur', rx(r'femur_', r'tibia_', r'fibula_', r'pes_')), ('Queue', rx(r'caudal_')),
+    ],
+    'Apatosaurus': [
+        ('Crane', rx(r'skull', r'tooth_')), ('Machoire', rx(r'mandible')),
+        ('Vertebre', rx(r'cervical_', r'dorsal_', r'sacrum')), ('Cote', rx(r'rib_')), ('Omoplate', rx(r'scapula_')),
+        ('Bras', rx(r'humerus_', r'radius_', r'ulna_', r'manus_')), ('Bassin', rx(r'pelvis')),
+        ('Femur', rx(r'femur_', r'tibia_', r'fibula_')), ('Pied', rx(r'pes_')), ('Queue', rx(r'caudal_')),
+    ],
+    'Aenocyon': [
+        ('Dent', rx(r'canine_', r'tooth_')), ('Crane', rx(r'skull')), ('Machoire', rx(r'mandible')),
+        ('Vertebre', rx(r'cervical_', r'thoracic_', r'lumbar_', r'sacrum', r'caudal_')),
+        ('Cote', rx(r'rib_', r'sternum')), ('Omoplate', rx(r'scapula_')), ('Bras', rx(r'humerus_', r'radius_', r'ulna_')),
+        ('Bassin', rx(r'pelvis')), ('Femur', rx(r'femur_', r'tibia_', r'fibula_')), ('Pied', rx(r'pes_', r'manus_')),
+    ],
+    'Carnotaurus': [
+        ('Dent', rx(r'tooth_')), ('Crane', rx(r'skull')), ('Corne', rx(r'horn_')), ('Machoire', rx(r'mandible_')),
+        ('Vertebre', rx(r'cervical_', r'dorsal_', r'sacrum')), ('Cote', rx(r'rib_', r'gastralia')),
+        ('Bras', rx(r'scapula_', r'humerus_', r'radius_', r'ulna_', r'manus_')), ('Bassin', rx(r'pelvis')),
+        ('Femur', rx(r'femur_', r'tibia_', r'fibula_', r'pes_')), ('Queue', rx(r'caudal_')),
+    ],
+    'Megatherium': [
+        ('Dent', rx(r'molar_')), ('Crane', rx(r'skull')), ('Machoire', rx(r'mandible')),
+        ('Vertebre', rx(r'cervical_', r'thoracic_', r'lumbar_', r'sacrum')), ('Cote', rx(r'rib_', r'sternum')),
+        ('Griffe', rx(r'claw_')), ('Bras', rx(r'scapula_', r'humerus_', r'radius_', r'ulna_', r'manus_')),
+        ('Bassin', rx(r'pelvis')), ('Femur', rx(r'femur_', r'tibia_', r'fibula_', r'pes_')), ('Queue', rx(r'caudal_')),
+    ],
+    'Glyptodon': [
+        ('Dent', rx(r'molar_')), ('Crane', rx(r'skull')), ('Machoire', rx(r'mandible')),
+        ('Vertebre', rx(r'cervical_', r'thoracic_', r'lumbar_', r'sacrum', r'rib_', r'sternum')),
+        ('Carapace', rx(r'carapace')), ('Bras', rx(r'scapula_', r'humerus_', r'radius_', r'ulna_')),
+        ('Bassin', rx(r'pelvis')), ('Femur', rx(r'femur_', r'tibia_', r'fibula_')), ('Pied', rx(r'pes_', r'manus_')),
+        ('Queue', rx(r'caudal_', r'tail_rings')),
+    ],
+    'Utahraptor': [
+        ('Dent', rx(r'tooth_')), ('Crane', rx(r'skull')), ('Machoire', rx(r'mandible_')),
+        ('Vertebre', rx(r'cervical_', r'dorsal_', r'sacrum')), ('Cote', rx(r'rib_', r'gastralia')),
+        ('Bras', rx(r'scapula_', r'humerus_', r'radius_', r'ulna_', r'manus_')), ('Griffe', rx(r'sickle_claw_', r'pes_')),
+        ('Bassin', rx(r'pelvis')), ('Femur', rx(r'femur_', r'tibia_', r'fibula_')), ('Queue', rx(r'caudal_', r'tail_rods')),
+    ],
 }
 
 
