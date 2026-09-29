@@ -14,7 +14,7 @@
    -0.0106,
    9.0877
   ],
-  "tris": 6542,
+  "tris": 6518,
   "bones": 1
  },
  "Os_Machoire_Megatherium": {
@@ -23,7 +23,7 @@
    -0.0017,
    8.5148
   ],
-  "tris": 5478,
+  "tris": 5458,
   "bones": 1
  },
  "Os_Vertebre_Megatherium": {
@@ -59,7 +59,7 @@
    -0.0027,
    5.4516
   ],
-  "tris": 18586,
+  "tris": 18534,
   "bones": 10
  },
  "Os_Bassin_Megatherium": {
@@ -68,14 +68,14 @@
    0.0033,
    9.5836
   ],
-  "tris": 6616,
+  "tris": 6592,
   "bones": 1
  },
  "Os_Femur_Megatherium": {
   "center_studs": [
-   -1.5746,
-   -0.0031,
-   5.158
+   -1.5655,
+   -0.0019,
+   5.1293
   ],
   "tris": 19500,
   "bones": 8
@@ -86,7 +86,7 @@
    -0.0119,
    7.0045
   ],
-  "tris": 9886,
+  "tris": 9856,
   "bones": 18
  }
 }
