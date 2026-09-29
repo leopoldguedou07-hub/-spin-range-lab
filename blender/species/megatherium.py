@@ -132,12 +132,12 @@ def pes(Ank, sg, side, rng, add):
     """Foot turned onto its outer edge: huge calcaneus heel, short metatarsals,
     one big clawed digit III, small outer digits resting on the ground."""
     tilt = rot((1, 0, 0), -0.55 * sg)
-    parts = [carpal_block(Ank + V([0, 0, -0.08]), (0.13, 0.12, 0.07), tilt, n=4, rng=rng),
-             ellipsoid(Ank + V([-0.2, sg * 0.03, -0.18]), (0.16, 0.08, 0.1), rot((0, 1, 0), 0.5))]   # calcaneus
+    parts = [carpal_block(Ank + V([0, 0, -0.06]), (0.14, 0.13, 0.08), tilt, n=4, rng=rng),
+             ellipsoid(Ank + V([-0.13, sg * 0.02, -0.1]), (0.15, 0.08, 0.09), rot((0, 1, 0), 0.5))]   # calcaneus
     for q, (a, ln) in enumerate([(-15, 0.22), (5, 0.26), (22, 0.2)]):
         aa = np.radians(a) * sg
         dd = V([np.cos(aa), np.sin(aa), 0])
-        b0 = Ank + V([0.05, sg * 0.05, -0.2]) + dd * 0.04
+        b0 = Ank + V([0.06, sg * 0.04, -0.11]) + dd * 0.04
         b1 = b0 + dd * ln + V([0, sg * 0.03, -0.1])
         b1[2] = max(b1[2], 0.05)
         parts.append(digit([b0, b1, b1 + dd * 0.06], [0.045, 0.04, 0.035], knuckle=1.2, seed=int(rng.integers(1e4)),
@@ -151,7 +151,7 @@ def joints(side, sg, a):
     E = G + V([-0.2, 0.04 * sg, -0.66])
     W = E + V([0.14, 0.0, -0.58])
     Kn = A + V([0.18 + 0.04 * sg, 0.04 * sg, -0.8])
-    return dict(G=G, E=E, W=W, A=A, K=Kn, Ank=Kn + V([-0.1, 0.02 * sg, -0.62]))
+    return dict(G=G, E=E, W=W, A=A, K=Kn, Ank=Kn + V([-0.1, 0.02 * sg, -0.76]))
 
 
 CFG = dict(
