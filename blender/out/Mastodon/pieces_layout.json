@@ -1,0 +1,92 @@
+{
+ "Os_Dent_Mastodon": {
+  "center_studs": [
+   10.4914,
+   -0.0012,
+   8.1764
+  ],
+  "tris": 1800,
+  "bones": 4
+ },
+ "Os_Defense_Mastodon": {
+  "center_studs": [
+   17.1446,
+   0.0024,
+   7.2066
+  ],
+  "tris": 6598,
+  "bones": 2
+ },
+ "Os_Crane_Mastodon": {
+  "center_studs": [
+   10.7012,
+   -0.0009,
+   9.6111
+  ],
+  "tris": 19500,
+  "bones": 1
+ },
+ "Os_Machoire_Mastodon": {
+  "center_studs": [
+   10.4797,
+   -0.009,
+   8.2738
+  ],
+  "tris": 5530,
+  "bones": 1
+ },
+ "Os_Cote_Mastodon": {
+  "center_studs": [
+   -0.4526,
+   -0.0204,
+   7.7926
+  ],
+  "tris": 19500,
+  "bones": 41
+ },
+ "Os_Bras_Mastodon": {
+  "center_studs": [
+   5.2457,
+   -0.0016,
+   5.9035
+  ],
+  "tris": 19500,
+  "bones": 10
+ },
+ "Os_Bassin_Mastodon": {
+  "center_studs": [
+   -6.2716,
+   0.0055,
+   8.3771
+  ],
+  "tris": 9964,
+  "bones": 1
+ },
+ "Os_Femur_Mastodon": {
+  "center_studs": [
+   -5.4374,
+   0.0012,
+   4.5403
+  ],
+  "tris": 9170,
+  "bones": 8
+ },
+ "Os_Pied_Mastodon": {
+  "center_studs": [
+   -5.4804,
+   0.0249,
+   0.6953
+  ],
+  "tris": 4000,
+  "bones": 2
+ },
+ "Os_Vertebre_Mastodon": {
+  "center_studs": [
+   -0.9757,
+   -0.0081,
+   8.3424
+  ],
+  "tris": 19500,
+  "bones": 55
+ }
+}
