@@ -1,0 +1,92 @@
+{
+ "Os_Dent_Carnotaurus": {
+  "center_studs": [
+   12.8348,
+   0.0006,
+   13.4098
+  ],
+  "tris": 4680,
+  "bones": 52
+ },
+ "Os_Crane_Carnotaurus": {
+  "center_studs": [
+   12.356,
+   0.0035,
+   14.1552
+  ],
+  "tris": 7000,
+  "bones": 1
+ },
+ "Os_Corne_Carnotaurus": {
+  "center_studs": [
+   11.9498,
+   0.0026,
+   14.876
+  ],
+  "tris": 3000,
+  "bones": 2
+ },
+ "Os_Machoire_Carnotaurus": {
+  "center_studs": [
+   12.3275,
+   0.0032,
+   13.3857
+  ],
+  "tris": 4000,
+  "bones": 2
+ },
+ "Os_Vertebre_Carnotaurus": {
+  "center_studs": [
+   3.4898,
+   -0.0058,
+   12.5289
+  ],
+  "tris": 19500,
+  "bones": 24
+ },
+ "Os_Cote_Carnotaurus": {
+  "center_studs": [
+   2.1481,
+   -0.0149,
+   9.193
+  ],
+  "tris": 16876,
+  "bones": 25
+ },
+ "Os_Bras_Carnotaurus": {
+  "center_studs": [
+   5.1595,
+   -0.0005,
+   9.5999
+  ],
+  "tris": 7000,
+  "bones": 10
+ },
+ "Os_Bassin_Carnotaurus": {
+  "center_studs": [
+   -2.7738,
+   -0.0092,
+   9.1653
+  ],
+  "tris": 11582,
+  "bones": 1
+ },
+ "Os_Femur_Carnotaurus": {
+  "center_studs": [
+   -2.4153,
+   -0.0002,
+   5.2574
+  ],
+  "tris": 13122,
+  "bones": 8
+ },
+ "Os_Queue_Carnotaurus": {
+  "center_studs": [
+   -14.1272,
+   -0.0814,
+   10.7254
+  ],
+  "tris": 19499,
+  "bones": 44
+ }
+}
