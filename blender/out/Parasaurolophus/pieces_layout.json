@@ -1,0 +1,92 @@
+{
+ "Os_Crane_Parasaurolophus": {
+  "center_studs": [
+   19.6157,
+   0.0001,
+   14.4815
+  ],
+  "tris": 6500,
+  "bones": 1
+ },
+ "Os_Crete_Parasaurolophus": {
+  "center_studs": [
+   18.2638,
+   0.0042,
+   16.9878
+  ],
+  "tris": 4000,
+  "bones": 1
+ },
+ "Os_Bec_Parasaurolophus": {
+  "center_studs": [
+   21.7111,
+   0.0006,
+   13.2389
+  ],
+  "tris": 1800,
+  "bones": 1
+ },
+ "Os_Machoire_Parasaurolophus": {
+  "center_studs": [
+   19.8533,
+   0.0028,
+   13.5121
+  ],
+  "tris": 3194,
+  "bones": 1
+ },
+ "Os_Vertebre_Parasaurolophus": {
+  "center_studs": [
+   -4.3503,
+   0.0081,
+   12.9508
+  ],
+  "tris": 19500,
+  "bones": 33
+ },
+ "Os_Cote_Parasaurolophus": {
+  "center_studs": [
+   5.0803,
+   -0.0291,
+   7.3372
+  ],
+  "tris": 19500,
+  "bones": 42
+ },
+ "Os_Bassin_Parasaurolophus": {
+  "center_studs": [
+   -1.9135,
+   0.0008,
+   11.2289
+  ],
+  "tris": 9458,
+  "bones": 1
+ },
+ "Os_Femur_Parasaurolophus": {
+  "center_studs": [
+   -0.8188,
+   -0.0102,
+   6.3795
+  ],
+  "tris": 10258,
+  "bones": 6
+ },
+ "Os_Pied_Parasaurolophus": {
+  "center_studs": [
+   4.5554,
+   0.0036,
+   0.905
+  ],
+  "tris": 7200,
+  "bones": 4
+ },
+ "Os_Queue_Parasaurolophus": {
+  "center_studs": [
+   -15.453,
+   0.0133,
+   12.0619
+  ],
+  "tris": 19500,
+  "bones": 50
+ }
+}
