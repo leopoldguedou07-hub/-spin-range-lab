@@ -14,7 +14,7 @@ Le code est la recette exacte : ce guide dit comment s'en servir et quelles règ
 |---|---|
 | Réalisme « scan de musée » | Os ivoire fossile (≈ `#E6D5B0`, teinte légèrement propre à chaque espèce), pores, fissures fines, rugosité variable, jamais d'aspect cube/low-poly. Référence de style : `references/Espece_Triceratops_REFERENCE_utilisateur.blend`. |
 | Anatomie propre à chaque espèce | Jamais un squelette générique avec une autre tête. Crâne, dents, cornes, crêtes, proportions et nombre de vertèbres propres à l'espèce (voir fiches des catalogues `references/*.pdf`). |
-| **Découpage = le vrai squelette coupé en N pièces** | Chaque espèce a N pièces (Mythique 12, Légendaire 11, Épique 10). **Tous** les os du squelette complet sont répartis dans ces N pièces ; remises ensemble elles reforment **tout** le squelette, à sa place et à sa taille. ❌ Ne PAS faire « 1 pièce = 1 os isolé » (c'était l'erreur initiale : pièces « mini » qui ne correspondent à rien). |
+| **Découpage = le vrai squelette coupé en N pièces** | Chaque espèce a N pièces, **N dépend de la rareté et se lit dans le catalogue** (Mythique 12, Légendaire 11, Épique 10, puis Rare et les suivants **moins** — voir §5 « Moins de pièces »). **Tous** les os du squelette complet sont répartis dans ces N pièces ; remises ensemble elles reforment **tout** le squelette, à sa place et à sa taille. ❌ Ne PAS faire « 1 pièce = 1 os isolé » (c'était l'erreur initiale : pièces « mini » qui ne correspondent à rien). |
 | Nom des pièces | `Os_<Pièce>_<Clé>` (clé = « clé jeu » du catalogue, ex. `Os_Crane_Triceratops`, `Os_Branchie_Dunkleosteus`). Dans Blender : `Os_<Pièce>_<Clé>_01`. |
 | Échelle | 1 unité = 1 stud, **taille réelle relative entre espèces**. On modélise en mètres puis ×`UNITS_PER_METRE = 4.72` (valeur mesurée sur le blend de référence). Squelette posé au sol (z = 0). |
 | Budgets triangles | Squelette LOD0 : petit 20–60 k, moyen 40–100 k, très grand 60–150 k. LOD1 ≈ 50 %, LOD2 ≈ 22 %. **Chaque pièce ≤ 19 500 triangles** (limite Roblox 20 k par MeshPart). |
@@ -117,6 +117,21 @@ renders/<Clé>/<Clé>_34.png, _side.png, _skull.png (+ gros plans), _pieces_asse
   # cd blender && python GUIDE/outils/verif_decoupage.py <module> ...   → MISSING [] et EMPTY [] obligatoires
   ```
 
+### Moins de pièces (Rare, Commun… : catalogues suivants)
+Plus la rareté baisse, moins il y a de pièces, **mais le squelette reste complet** : on coupe le même squelette
+en **moins de morceaux plus gros**. Ne jamais supprimer d'os ni en laisser hors pièce. Méthode :
+1. Prendre la liste exacte des pièces dans la fiche (nom et code `Os_…`).
+2. Chaque pièce reçoit son os « titre » (Crâne → `skull`, Fémur → `femur_`…).
+3. Rattacher tous les autres os à la pièce **voisine anatomique** la plus logique, dans cet ordre de regroupement :
+   dents + mâchoire → **Crâne** ; côtes, sternum, gastralia → **Vertèbre** (ou **Côte** si elle existe) ;
+   omoplate + bras + main → **Bras** (sinon **Omoplate**, sinon **Côte**) ; tibia/péroné + pied → **Fémur** (sinon **Pied**) ;
+   queue → **Queue** (sinon **Vertèbre**) ; cornes/crêtes/plaques → leur pièce si elle existe, sinon **Crâne** / **Vertèbre**.
+4. Exemple à 5 pièces (Crâne, Vertèbre, Bras, Fémur, Queue) : Crâne = crâne+mâchoire+dents+cornes ; Vertèbre = cou+dos+sacrum+côtes+sternum ;
+   Bras = omoplates+bras+mains ; Fémur = bassin+pattes arrière+pieds ; Queue = caudales.
+5. Vérifier : `verif_decoupage.py` → MISSING [] , EMPTY [] , et le nombre de pièces = celui de la fiche.
+6. Une grosse pièce peut dépasser 19 500 triangles avant décimation : `repartition.py` la réduit automatiquement ;
+   si la qualité baisse trop, baisser le `budget` de l'espèce ou découper la pièce en plusieurs MeshParts du même nom dans Roblox.
+
 ### Espèces, modules et pièces
 | Clé | module | N | Pièces |
 |---|---|---|---|
@@ -196,4 +211,4 @@ renders/<Clé>/<Clé>_34.png, _side.png, _skull.png (+ gros plans), _pieces_asse
 ---
 
 ## 9. Prompt prêt à donner à un autre modèle
-> Tu reprends le projet `blender/` de ce dépôt (squelettes de musée procéduraux pour le jeu Roblox « Le Dinosaure »). Lis d'abord `blender/GUIDE/README.md` en entier, puis les catalogues `blender/GUIDE/references/*.pdf`. Installe l'environnement avec `bash blender/GUIDE/setup.sh`. Respecte strictement les règles du §1 : réalisme scan de musée ivoire, anatomie propre à chaque espèce, **squelette complet découpé en N pièces du catalogue (pas des os isolés)**, noms `Os_<Pièce>_<Clé>`, 1 unité = 1 stud (×4,72), pièces ≤ 19 500 triangles. Pour chaque nouvelle espèce, suis la procédure du §6 et la checklist visuelle ; regarde toujours les rendus avant de valider. Tâche : [décrire ici, ex. « fais le catalogue suivant » ou « cuis les textures des pièces pour Roblox »].
+> Tu reprends le projet `blender/` de ce dépôt (squelettes de musée procéduraux pour le jeu Roblox « Le Dinosaure »). Lis d'abord `blender/GUIDE/README.md` en entier, puis les catalogues `blender/GUIDE/references/*.pdf`. Installe l'environnement avec `bash blender/GUIDE/setup.sh`. Respecte strictement les règles du §1 : réalisme scan de musée ivoire, anatomie propre à chaque espèce, **squelette complet découpé en N pièces du catalogue (pas des os isolés) — N se lit dans la fiche et diminue avec la rareté (Rare et suivants : moins de pièces, plus grosses, squelette toujours complet, voir §5)**, noms `Os_<Pièce>_<Clé>`, 1 unité = 1 stud (×4,72), pièces ≤ 19 500 triangles. Pour chaque nouvelle espèce, suis la procédure du §6 et la checklist visuelle ; regarde toujours les rendus avant de valider. Tâche : [décrire ici, ex. « fais le catalogue suivant » ou « cuis les textures des pièces pour Roblox »].
