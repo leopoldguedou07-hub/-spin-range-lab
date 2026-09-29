@@ -1,0 +1,92 @@
+{
+ "Os_Crane_Styracosaurus": {
+  "center_studs": [
+   10.4516,
+   0.0029,
+   5.2611
+  ],
+  "tris": 16976,
+  "bones": 2
+ },
+ "Os_Corne_Styracosaurus": {
+  "center_studs": [
+   12.01,
+   -0.0022,
+   6.8081
+  ],
+  "tris": 1500,
+  "bones": 1
+ },
+ "Os_Collerette_Styracosaurus": {
+  "center_studs": [
+   7.9086,
+   0.0076,
+   8.6475
+  ],
+  "tris": 16046,
+  "bones": 1
+ },
+ "Os_Bec_Styracosaurus": {
+  "center_studs": [
+   12.7413,
+   -0.0018,
+   4.5383
+  ],
+  "tris": 800,
+  "bones": 1
+ },
+ "Os_Vertebre_Styracosaurus": {
+  "center_studs": [
+   -2.6898,
+   0.0008,
+   6.4036
+  ],
+  "tris": 19500,
+  "bones": 23
+ },
+ "Os_Cote_Styracosaurus": {
+  "center_studs": [
+   3.3311,
+   -0.0226,
+   4.0883
+  ],
+  "tris": 19500,
+  "bones": 32
+ },
+ "Os_Bassin_Styracosaurus": {
+  "center_studs": [
+   -0.8244,
+   -0.0078,
+   6.0256
+  ],
+  "tris": 8864,
+  "bones": 1
+ },
+ "Os_Femur_Styracosaurus": {
+  "center_studs": [
+   -0.4846,
+   -0.0012,
+   3.2297
+  ],
+  "tris": 7320,
+  "bones": 6
+ },
+ "Os_Pied_Styracosaurus": {
+  "center_studs": [
+   2.6614,
+   0.0003,
+   0.3469
+  ],
+  "tris": 7200,
+  "bones": 4
+ },
+ "Os_Queue_Styracosaurus": {
+  "center_studs": [
+   -8.524,
+   -0.0187,
+   6.0072
+  ],
+  "tris": 12906,
+  "bones": 40
+ }
+}
