@@ -105,9 +105,12 @@ def bones():
     R, L = local(HEAD, V([1, 0, 0]), (0, 0, 1))
     # ------------------------------------------------------ head shield ---
     # blocky helmet: tall rounded cranial box, steep blunt snout, flat cheeks
-    outer = union(0.12, ellipsoid(L(0.1, 0, 0.12), (0.62, 0.48, 0.5), R), ellipsoid(L(0.45, 0, 0.0), (0.35, 0.4, 0.42), R))
-    inner = union(0.1, ellipsoid(L(0.1, 0, 0.1), (0.54, 0.4, 0.42), R), ellipsoid(L(0.45, 0, -0.02), (0.28, 0.32, 0.34), R))
-    helm = outer.sub(inner, 0.02)
+    # angular armoured box: flat cheeks, flat roof, steep blunt snout
+    outer = union(0.06, box(L(-0.02, 0, 0.1), (0.55, 0.4, 0.4), R, rnd=0.12),
+                  box(L(0.42, 0, -0.04), (0.2, 0.34, 0.34), R, rnd=0.1))
+    snout_cut = box(L(0.75, 0, 0.5), (0.3, 0.6, 0.45), R @ rot((0, 1, 0), -0.75), rnd=0.02)
+    outer = outer.sub(snout_cut, 0.05)
+    helm = outer.sub(outer.grow(-0.07), 0.0)
     helm = helm.sub(box(L(0.3, 0, -0.52), (0.9, 0.7, 0.3), R), 0.04)           # open underneath (mouth, gills)
     helm = helm.sub(box(L(-0.62, 0, 0.0), (0.2, 0.7, 0.7), R), 0.04)           # open behind (joins the thorax)
     for sg in (-1, 1):
@@ -144,16 +147,17 @@ def bones():
         add(f'tooth_upper_post_{side}', ['SKULL', 'SKULL_teeth'], post.displace(0.002, 30, seed=32 + sg), 0.0025,
             min_tris=700)
     # ------------------------------------------------------ thoracic armour ---
-    To = HEAD + V([-0.95, 0, -0.08])
+    To = HEAD + V([-0.95, 0, -0.06])
     Rt, Lt = local(To, V([1, 0, 0]), (0, 0, 1))
-    shell = ellipsoid(Lt(0, 0, 0), (0.55, 0.62, 0.62), Rt).sub(ellipsoid(Lt(0, 0, 0), (0.62, 0.55, 0.55), Rt), 0.02)
-    shell = shell.inter(box(Lt(0.05, 0, 0), (0.45, 0.8, 0.8), Rt), 0.03)
+    ob = box(Lt(0, 0, 0.02), (0.45, 0.46, 0.44), Rt, rnd=0.2)
+    shell = ob.sub(ob.grow(-0.07), 0.0)
+    shell = shell.sub(box(Lt(0.62, 0, 0), (0.2, 0.8, 0.8), Rt), 0.03)            # open front (behind the head)
+    shell = shell.sub(box(Lt(-0.55, 0, -0.2), (0.25, 0.8, 0.6), Rt @ rot((0, 1, 0), 0.5)), 0.05)  # sloping trailing edge
     shell = shell.sub(box(Lt(0.0, 0, -0.62), (0.3, 0.28, 0.2), Rt), 0.05)           # ventral gap
     for sg in (-1, 1):
-        shell = shell.sub(ellipsoid(Lt(0.12, sg * 0.62, -0.25), (0.14, 0.12, 0.12), Rt), 0.03)   # pectoral fenestra
-    spinal = [round_cone(Lt(0.0, sg * 0.55, -0.32), Lt(-0.45, sg * 0.6, -0.4), 0.05, 0.01) for sg in (-1, 1)]
-    median = ribbon([Lt(0.3, 0, 0.58), Lt(0.0, 0, 0.63), Lt(-0.35, 0, 0.56)], [0.12, 0.2, 0.12], [0.02, 0.024, 0.02],
-                    Rt[:, 1])                                                          # median dorsal plate keel
+        shell = shell.sub(ellipsoid(Lt(0.12, sg * 0.46, -0.22), (0.13, 0.12, 0.11), Rt), 0.03)   # pectoral fenestra
+    spinal = [round_cone(Lt(0.0, sg * 0.46, -0.25), Lt(-0.45, sg * 0.55, -0.35), 0.045, 0.01) for sg in (-1, 1)]
+    median = tube([Lt(0.35, 0, 0.44), Lt(0.0, 0, 0.5), Lt(-0.35, 0, 0.42)], [0.03, 0.045, 0.02])   # median dorsal keel
     thor = union(0.02, shell, median, *spinal)
     thor = sutures(thor, Rt, To, [((0, 0.25, 0), (0, 1, 0.5)), ((0, -0.25, 0), (0, 1, -0.5)),
                                   ((0.05, 0, 0), (1, 0, 0))], 0.006, 0.03)
