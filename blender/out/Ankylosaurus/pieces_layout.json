@@ -1,0 +1,101 @@
+{
+ "Os_Crane_Ankylosaurus": {
+  "center_studs": [
+   14.8236,
+   0.0061,
+   6.0063
+  ],
+  "tris": 8390,
+  "bones": 1
+ },
+ "Os_Machoire_Ankylosaurus": {
+  "center_studs": [
+   15.0263,
+   0.0005,
+   4.9512
+  ],
+  "tris": 1800,
+  "bones": 1
+ },
+ "Os_Plaque_Ankylosaurus": {
+  "center_studs": [
+   -1.3632,
+   0.0065,
+   7.2931
+  ],
+  "tris": 17940,
+  "bones": 88
+ },
+ "Os_Massue_Ankylosaurus": {
+  "center_studs": [
+   -18.9756,
+   -0.003,
+   5.5642
+  ],
+  "tris": 2500,
+  "bones": 1
+ },
+ "Os_Vertebre_Ankylosaurus": {
+  "center_studs": [
+   4.3926,
+   0.0004,
+   7.5648
+  ],
+  "tris": 19500,
+  "bones": 21
+ },
+ "Os_Cote_Ankylosaurus": {
+  "center_studs": [
+   4.1849,
+   -0.0279,
+   6.1396
+  ],
+  "tris": 19500,
+  "bones": 24
+ },
+ "Os_Bras_Ankylosaurus": {
+  "center_studs": [
+   8.515,
+   0.0032,
+   3.9268
+  ],
+  "tris": 11962,
+  "bones": 10
+ },
+ "Os_Bassin_Ankylosaurus": {
+  "center_studs": [
+   -1.5636,
+   -0.0094,
+   6.1934
+  ],
+  "tris": 17094,
+  "bones": 1
+ },
+ "Os_Femur_Ankylosaurus": {
+  "center_studs": [
+   -1.4069,
+   -0.004,
+   3.8653
+  ],
+  "tris": 7062,
+  "bones": 6
+ },
+ "Os_Pied_Ankylosaurus": {
+  "center_studs": [
+   -1.537,
+   -0.0005,
+   0.5953
+  ],
+  "tris": 3600,
+  "bones": 2
+ },
+ "Os_Queue_Ankylosaurus": {
+  "center_studs": [
+   -12.5051,
+   -0.03,
+   6.8557
+  ],
+  "tris": 10836,
+  "bones": 27
+ }
+}

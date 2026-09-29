@@ -1,0 +1,101 @@
+{
+ "Os_Dent_Megalodon": {
+  "center_studs": [
+   34.2375,
+   0.0062,
+   3.798
+  ],
+  "tris": 12420,
+  "bones": 138
+ },
+ "Os_Crane_Megalodon": {
+  "center_studs": [
+   32.4592,
+   0.0074,
+   7.7885
+  ],
+  "tris": 12262,
+  "bones": 1
+ },
+ "Os_Rostre_Megalodon": {
+  "center_studs": [
+   37.0191,
+   0.0105,
+   7.4783
+  ],
+  "tris": 1500,
+  "bones": 1
+ },
+ "Os_Machoire_Megalodon": {
+  "center_studs": [
+   33.8779,
+   0.0186,
+   3.9181
+  ],
+  "tris": 16746,
+  "bones": 2
+ },
+ "Os_Branchies_Megalodon": {
+  "center_studs": [
+   24.5878,
+   0.003,
+   6.7912
+  ],
+  "tris": 7698,
+  "bones": 1
+ },
+ "Os_Ecailles_Megalodon": {
+  "center_studs": [
+   10.385,
+   1.452,
+   8.5406
+  ],
+  "tris": 2500,
+  "bones": 1
+ },
+ "Os_Ceinture_Megalodon": {
+  "center_studs": [
+   20.7166,
+   0.0137,
+   5.6673
+  ],
+  "tris": 3340,
+  "bones": 1
+ },
+ "Os_Nageoire_Megalodon": {
+  "center_studs": [
+   16.9315,
+   -0.0246,
+   2.732
+  ],
+  "tris": 11098,
+  "bones": 2
+ },
+ "Os_NageoireDorsale_Megalodon": {
+  "center_studs": [
+   3.0579,
+   0.851,
+   12.4437
+  ],
+  "tris": 7034,
+  "bones": 1
+ },
+ "Os_Vertebre_Megalodon": {
+  "center_studs": [
+   -0.1938,
+   -0.0853,
+   8.1922
+  ],
+  "tris": 19500,
+  "bones": 110
+ },
+ "Os_Queue_Megalodon": {
+  "center_studs": [
+   -35.7843,
+   -1.1079,
+   11.3972
+  ],
+  "tris": 19500,
+  "bones": 41
+ }
+}

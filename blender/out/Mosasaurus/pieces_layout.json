@@ -1,0 +1,110 @@
+{
+ "Os_Dent_Mosasaurus": {
+  "center_studs": [
+   4.6559,
+   0.2252,
+   4.4686
+  ],
+  "tris": 4316,
+  "bones": 54
+ },
+ "Os_Crane_Mosasaurus": {
+  "center_studs": [
+   3.6262,
+   0.0566,
+   6.2507
+  ],
+  "tris": 9336,
+  "bones": 1
+ },
+ "Os_Machoire_Mosasaurus": {
+  "center_studs": [
+   3.3829,
+   -0.0155,
+   4.3259
+  ],
+  "tris": 4054,
+  "bones": 2
+ },
+ "Os_Carre_Mosasaurus": {
+  "center_studs": [
+   -0.0904,
+   -0.0146,
+   5.6662
+  ],
+  "tris": 1800,
+  "bones": 2
+ },
+ "Os_Pterygoide_Mosasaurus": {
+  "center_studs": [
+   2.3066,
+   0.0532,
+   5.388
+  ],
+  "tris": 1798,
+  "bones": 2
+ },
+ "Os_Vertebre_Mosasaurus": {
+  "center_studs": [
+   -15.9772,
+   0.4562,
+   6.5946
+  ],
+  "tris": 19500,
+  "bones": 41
+ },
+ "Os_Cote_Mosasaurus": {
+  "center_studs": [
+   -16.1036,
+   0.7794,
+   3.6038
+  ],
+  "tris": 18776,
+  "bones": 56
+ },
+ "Os_Omoplate_Mosasaurus": {
+  "center_studs": [
+   -5.2906,
+   -0.2778,
+   4.9253
+  ],
+  "tris": 3418,
+  "bones": 2
+ },
+ "Os_Nageoire_Mosasaurus": {
+  "center_studs": [
+   -7.8204,
+   -0.0696,
+   2.1823
+  ],
+  "tris": 6000,
+  "bones": 2
+ },
+ "Os_Bassin_Mosasaurus": {
+  "center_studs": [
+   -26.5165,
+   0.7513,
+   4.2255
+  ],
+  "tris": 1394,
+  "bones": 1
+ },
+ "Os_NageoireArriere_Mosasaurus": {
+  "center_studs": [
+   -28.1406,
+   0.2859,
+   3.0161
+  ],
+  "tris": 5000,
+  "bones": 2
+ },
+ "Os_Queue_Mosasaurus": {
+  "center_studs": [
+   -44.2581,
+   -0.3633,
+   3.7567
+  ],
+  "tris": 19500,
+  "bones": 54
+ }
+}

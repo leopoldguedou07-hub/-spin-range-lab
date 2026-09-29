@@ -1,0 +1,101 @@
+{
+ "Os_Crane_Diplodocus": {
+  "center_studs": [
+   48.0133,
+   -0.0006,
+   23.6059
+  ],
+  "tris": 6780,
+  "bones": 21
+ },
+ "Os_Machoire_Diplodocus": {
+  "center_studs": [
+   47.9937,
+   0.0012,
+   23.0937
+  ],
+  "tris": 1500,
+  "bones": 1
+ },
+ "Os_Vertebre_Diplodocus": {
+  "center_studs": [
+   18.3317,
+   0.0129,
+   20.946
+  ],
+  "tris": 19500,
+  "bones": 26
+ },
+ "Os_Cote_Diplodocus": {
+  "center_studs": [
+   0.0713,
+   0.005,
+   13.5426
+  ],
+  "tris": 19500,
+  "bones": 20
+ },
+ "Os_Omoplate_Diplodocus": {
+  "center_studs": [
+   5.3317,
+   -0.0004,
+   14.0866
+  ],
+  "tris": 3600,
+  "bones": 2
+ },
+ "Os_Bras_Diplodocus": {
+  "center_studs": [
+   7.0566,
+   -0.0086,
+   6.0746
+  ],
+  "tris": 10314,
+  "bones": 8
+ },
+ "Os_Bassin_Diplodocus": {
+  "center_studs": [
+   -8.4207,
+   0.0086,
+   15.5663
+  ],
+  "tris": 14916,
+  "bones": 1
+ },
+ "Os_Femur_Diplodocus": {
+  "center_studs": [
+   -7.5522,
+   -0.0036,
+   12.1292
+  ],
+  "tris": 6222,
+  "bones": 2
+ },
+ "Os_Tibia_Diplodocus": {
+  "center_studs": [
+   -7.5252,
+   0.0023,
+   5.8594
+  ],
+  "tris": 4884,
+  "bones": 4
+ },
+ "Os_Pied_Diplodocus": {
+  "center_studs": [
+   -7.0989,
+   0.0011,
+   2.3553
+  ],
+  "tris": 3600,
+  "bones": 2
+ },
+ "Os_Queue_Diplodocus": {
+  "center_studs": [
+   -41.4603,
+   0.0188,
+   13.2199
+  ],
+  "tris": 19500,
+  "bones": 80
+ }
+}

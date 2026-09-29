@@ -1,0 +1,101 @@
+{
+ "Os_Dent_Spinosaurus": {
+  "center_studs": [
+   25.9784,
+   0.0013,
+   13.1846
+  ],
+  "tris": 4860,
+  "bones": 54
+ },
+ "Os_Crane_Spinosaurus": {
+  "center_studs": [
+   24.5254,
+   0.0048,
+   14.1021
+  ],
+  "tris": 10328,
+  "bones": 1
+ },
+ "Os_Machoire_Spinosaurus": {
+  "center_studs": [
+   24.3261,
+   0.0016,
+   13.2457
+  ],
+  "tris": 3996,
+  "bones": 2
+ },
+ "Os_Voile_Spinosaurus": {
+  "center_studs": [
+   5.0105,
+   0.0064,
+   13.0155
+  ],
+  "tris": 19500,
+  "bones": 13
+ },
+ "Os_Vertebre_Spinosaurus": {
+  "center_studs": [
+   8.8938,
+   0.0133,
+   11.5624
+  ],
+  "tris": 19500,
+  "bones": 11
+ },
+ "Os_Cote_Spinosaurus": {
+  "center_studs": [
+   5.0567,
+   0.0323,
+   7.2286
+  ],
+  "tris": 14540,
+  "bones": 25
+ },
+ "Os_Griffe_Spinosaurus": {
+  "center_studs": [
+   10.4679,
+   0.0003,
+   5.948
+  ],
+  "tris": 7996,
+  "bones": 12
+ },
+ "Os_Bassin_Spinosaurus": {
+  "center_studs": [
+   -1.5129,
+   0.0069,
+   6.7395
+  ],
+  "tris": 9476,
+  "bones": 1
+ },
+ "Os_Femur_Spinosaurus": {
+  "center_studs": [
+   -0.4361,
+   0.0083,
+   4.7875
+  ],
+  "tris": 5476,
+  "bones": 6
+ },
+ "Os_Pied_Spinosaurus": {
+  "center_studs": [
+   -0.0735,
+   0.0001,
+   1.0498
+  ],
+  "tris": 3600,
+  "bones": 2
+ },
+ "Os_Queue_Spinosaurus": {
+  "center_studs": [
+   -24.3939,
+   -0.0411,
+   8.5229
+  ],
+  "tris": 19500,
+  "bones": 64
+ }
+}

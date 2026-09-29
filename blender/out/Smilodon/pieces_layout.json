@@ -1,0 +1,101 @@
+{
+ "Os_Dent_Smilodon": {
+  "center_studs": [
+   3.7682,
+   -0.0001,
+   3.2654
+  ],
+  "tris": 2518,
+  "bones": 10
+ },
+ "Os_Crane_Smilodon": {
+  "center_studs": [
+   3.599,
+   0.0001,
+   4.2046
+  ],
+  "tris": 16758,
+  "bones": 1
+ },
+ "Os_Machoire_Smilodon": {
+  "center_studs": [
+   3.3587,
+   0.001,
+   3.3285
+  ],
+  "tris": 2500,
+  "bones": 1
+ },
+ "Os_Vertebre_Smilodon": {
+  "center_studs": [
+   -0.5415,
+   0.0011,
+   2.9465
+  ],
+  "tris": 19500,
+  "bones": 41
+ },
+ "Os_Cote_Smilodon": {
+  "center_studs": [
+   0.4137,
+   -0.0138,
+   2.6839
+  ],
+  "tris": 13994,
+  "bones": 27
+ },
+ "Os_Omoplate_Smilodon": {
+  "center_studs": [
+   1.4571,
+   0.0001,
+   3.1221
+  ],
+  "tris": 2400,
+  "bones": 2
+ },
+ "Os_Bras_Smilodon": {
+  "center_studs": [
+   1.4312,
+   -0.0013,
+   1.669
+  ],
+  "tris": 6904,
+  "bones": 6
+ },
+ "Os_Griffe_Smilodon": {
+  "center_studs": [
+   1.6619,
+   -0.0005,
+   0.2589
+  ],
+  "tris": 4798,
+  "bones": 4
+ },
+ "Os_Bassin_Smilodon": {
+  "center_studs": [
+   -2.3792,
+   -0.004,
+   2.8684
+  ],
+  "tris": 2486,
+  "bones": 1
+ },
+ "Os_Femur_Smilodon": {
+  "center_studs": [
+   -2.2623,
+   0.0001,
+   1.6813
+  ],
+  "tris": 6800,
+  "bones": 6
+ },
+ "Os_Pied_Smilodon": {
+  "center_studs": [
+   -2.5344,
+   0.0,
+   0.3117
+  ],
+  "tris": 3600,
+  "bones": 2
+ }
+}

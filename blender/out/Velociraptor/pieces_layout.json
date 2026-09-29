@@ -1,0 +1,101 @@
+{
+ "Os_Dent_Velociraptor": {
+  "center_studs": [
+   3.47,
+   -0.0,
+   2.6566
+  ],
+  "tris": 4860,
+  "bones": 54
+ },
+ "Os_Crane_Velociraptor": {
+  "center_studs": [
+   3.2986,
+   -0.0001,
+   2.8725
+  ],
+  "tris": 10054,
+  "bones": 1
+ },
+ "Os_Machoire_Velociraptor": {
+  "center_studs": [
+   3.276,
+   0.0003,
+   2.6423
+  ],
+  "tris": 2400,
+  "bones": 2
+ },
+ "Os_Vertebre_Velociraptor": {
+  "center_studs": [
+   0.6367,
+   -0.0016,
+   2.4752
+  ],
+  "tris": 14862,
+  "bones": 24
+ },
+ "Os_Cote_Velociraptor": {
+  "center_studs": [
+   0.0689,
+   -0.0004,
+   1.7818
+  ],
+  "tris": 5738,
+  "bones": 25
+ },
+ "Os_Fourchette_Velociraptor": {
+  "center_studs": [
+   0.9619,
+   0.0006,
+   1.7939
+  ],
+  "tris": 2200,
+  "bones": 3
+ },
+ "Os_Bras_Velociraptor": {
+  "center_studs": [
+   1.1818,
+   0.0015,
+   1.4406
+  ],
+  "tris": 5200,
+  "bones": 8
+ },
+ "Os_Griffe_Velociraptor": {
+  "center_studs": [
+   -0.9787,
+   0.0005,
+   0.2466
+  ],
+  "tris": 4600,
+  "bones": 4
+ },
+ "Os_Bassin_Velociraptor": {
+  "center_studs": [
+   -1.1213,
+   0.0012,
+   1.7586
+  ],
+  "tris": 4418,
+  "bones": 1
+ },
+ "Os_Femur_Velociraptor": {
+  "center_studs": [
+   -0.9658,
+   -0.0006,
+   1.1946
+  ],
+  "tris": 5200,
+  "bones": 6
+ },
+ "Os_Queue_Velociraptor": {
+  "center_studs": [
+   -4.015,
+   0.0009,
+   2.0479
+  ],
+  "tris": 7049,
+  "bones": 27
+ }
+}

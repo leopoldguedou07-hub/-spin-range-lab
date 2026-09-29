@@ -1,0 +1,110 @@
+{
+ "Os_Dent_Brachiosaurus": {
+  "center_studs": [
+   35.5323,
+   -0.0013,
+   61.2804
+  ],
+  "tris": 1680,
+  "bones": 24
+ },
+ "Os_Crane_Brachiosaurus": {
+  "center_studs": [
+   34.6829,
+   0.0004,
+   62.9962
+  ],
+  "tris": 5000,
+  "bones": 1
+ },
+ "Os_Machoire_Brachiosaurus": {
+  "center_studs": [
+   34.558,
+   -0.008,
+   61.7969
+  ],
+  "tris": 1498,
+  "bones": 1
+ },
+ "Os_Vertebre_Brachiosaurus": {
+  "center_studs": [
+   10.9558,
+   -0.0127,
+   41.4852
+  ],
+  "tris": 19500,
+  "bones": 26
+ },
+ "Os_Cote_Brachiosaurus": {
+  "center_studs": [
+   3.6382,
+   0.052,
+   19.2642
+  ],
+  "tris": 19500,
+  "bones": 24
+ },
+ "Os_Omoplate_Brachiosaurus": {
+  "center_studs": [
+   8.4122,
+   0.0017,
+   23.9664
+  ],
+  "tris": 5426,
+  "bones": 2
+ },
+ "Os_Bras_Brachiosaurus": {
+  "center_studs": [
+   11.6401,
+   0.0046,
+   11.3681
+  ],
+  "tris": 14290,
+  "bones": 8
+ },
+ "Os_Bassin_Brachiosaurus": {
+  "center_studs": [
+   -7.1883,
+   -0.0006,
+   16.6922
+  ],
+  "tris": 10224,
+  "bones": 1
+ },
+ "Os_Femur_Brachiosaurus": {
+  "center_studs": [
+   -6.7057,
+   0.004,
+   13.0672
+  ],
+  "tris": 6134,
+  "bones": 2
+ },
+ "Os_Tibia_Brachiosaurus": {
+  "center_studs": [
+   -6.8919,
+   0.0107,
+   5.6681
+  ],
+  "tris": 3896,
+  "bones": 4
+ },
+ "Os_Pied_Brachiosaurus": {
+  "center_studs": [
+   -6.0137,
+   -0.0023,
+   1.5837
+  ],
+  "tris": 4000,
+  "bones": 2
+ },
+ "Os_Queue_Brachiosaurus": {
+  "center_studs": [
+   -27.6506,
+   -0.0022,
+   16.3963
+  ],
+  "tris": 14132,
+  "bones": 38
+ }
+}

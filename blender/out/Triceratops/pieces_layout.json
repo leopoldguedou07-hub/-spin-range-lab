@@ -1,0 +1,101 @@
+{
+ "Os_Crane_Triceratops": {
+  "center_studs": [
+   15.9785,
+   -0.0242,
+   10.7297
+  ],
+  "tris": 19500,
+  "bones": 1
+ },
+ "Os_Corne_Triceratops": {
+  "center_studs": [
+   18.5409,
+   0.0036,
+   11.1836
+  ],
+  "tris": 2400,
+  "bones": 2
+ },
+ "Os_Bec_Triceratops": {
+  "center_studs": [
+   19.8306,
+   -0.0056,
+   7.0292
+  ],
+  "tris": 800,
+  "bones": 1
+ },
+ "Os_Machoire_Triceratops": {
+  "center_studs": [
+   16.4135,
+   0.0013,
+   7.053
+  ],
+  "tris": 4388,
+  "bones": 1
+ },
+ "Os_Vertebre_Triceratops": {
+  "center_studs": [
+   -3.816,
+   0.0036,
+   10.0905
+  ],
+  "tris": 19500,
+  "bones": 23
+ },
+ "Os_Cote_Triceratops": {
+  "center_studs": [
+   4.3168,
+   -0.0021,
+   8.4573
+  ],
+  "tris": 19500,
+  "bones": 24
+ },
+ "Os_Omoplate_Triceratops": {
+  "center_studs": [
+   8.5028,
+   0.0036,
+   5.9173
+  ],
+  "tris": 13372,
+  "bones": 10
+ },
+ "Os_Bassin_Triceratops": {
+  "center_studs": [
+   -1.3841,
+   -0.008,
+   9.5586
+  ],
+  "tris": 9954,
+  "bones": 1
+ },
+ "Os_Femur_Triceratops": {
+  "center_studs": [
+   -0.8417,
+   -0.0018,
+   5.1124
+  ],
+  "tris": 8206,
+  "bones": 6
+ },
+ "Os_Pied_Triceratops": {
+  "center_studs": [
+   -0.7679,
+   0.004,
+   0.4372
+  ],
+  "tris": 3600,
+  "bones": 2
+ },
+ "Os_Queue_Triceratops": {
+  "center_studs": [
+   -13.1241,
+   -0.0444,
+   9.2527
+  ],
+  "tris": 14102,
+  "bones": 38
+ }
+}

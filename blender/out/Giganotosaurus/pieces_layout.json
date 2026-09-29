@@ -1,0 +1,101 @@
+{
+ "Os_Dent_Giganotosaurus": {
+  "center_studs": [
+   22.0823,
+   0.0002,
+   17.9044
+  ],
+  "tris": 4474,
+  "bones": 50
+ },
+ "Os_Crane_Giganotosaurus": {
+  "center_studs": [
+   20.7637,
+   -0.0017,
+   19.2545
+  ],
+  "tris": 12120,
+  "bones": 1
+ },
+ "Os_Machoire_Giganotosaurus": {
+  "center_studs": [
+   20.6572,
+   0.0016,
+   17.6959
+  ],
+  "tris": 5574,
+  "bones": 2
+ },
+ "Os_Vertebre_Giganotosaurus": {
+  "center_studs": [
+   5.4793,
+   0.0022,
+   17.3802
+  ],
+  "tris": 19500,
+  "bones": 24
+ },
+ "Os_Cote_Giganotosaurus": {
+  "center_studs": [
+   2.9654,
+   0.0113,
+   12.5525
+  ],
+  "tris": 19500,
+  "bones": 25
+ },
+ "Os_Griffe_Giganotosaurus": {
+  "center_studs": [
+   11.8204,
+   0.0004,
+   8.6201
+  ],
+  "tris": 1000,
+  "bones": 2
+ },
+ "Os_Bras_Giganotosaurus": {
+  "center_studs": [
+   8.671,
+   0.0046,
+   12.2532
+  ],
+  "tris": 7000,
+  "bones": 10
+ },
+ "Os_Bassin_Giganotosaurus": {
+  "center_studs": [
+   -4.4059,
+   0.0036,
+   12.5479
+  ],
+  "tris": 14114,
+  "bones": 1
+ },
+ "Os_Femur_Giganotosaurus": {
+  "center_studs": [
+   -3.9748,
+   0.0007,
+   8.6257
+  ],
+  "tris": 12260,
+  "bones": 6
+ },
+ "Os_Pied_Giganotosaurus": {
+  "center_studs": [
+   -3.7916,
+   0.0433,
+   1.6733
+  ],
+  "tris": 3600,
+  "bones": 2
+ },
+ "Os_Queue_Giganotosaurus": {
+  "center_studs": [
+   -22.066,
+   0.0135,
+   15.1052
+  ],
+  "tris": 19500,
+  "bones": 46
+ }
+}

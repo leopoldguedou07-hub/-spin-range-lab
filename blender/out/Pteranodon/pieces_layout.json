@@ -1,0 +1,110 @@
+{
+ "Os_Crane_Pteranodon": {
+  "center_studs": [
+   3.2385,
+   -0.0001,
+   8.5227
+  ],
+  "tris": 11908,
+  "bones": 1
+ },
+ "Os_Crete_Pteranodon": {
+  "center_studs": [
+   1.1699,
+   -0.0003,
+   10.3195
+  ],
+  "tris": 3370,
+  "bones": 1
+ },
+ "Os_Bec_Pteranodon": {
+  "center_studs": [
+   5.8277,
+   0.0003,
+   7.7315
+  ],
+  "tris": 1684,
+  "bones": 1
+ },
+ "Os_Machoire_Pteranodon": {
+  "center_studs": [
+   4.4059,
+   -0.001,
+   7.8682
+  ],
+  "tris": 3314,
+  "bones": 1
+ },
+ "Os_Vertebre_Pteranodon": {
+  "center_studs": [
+   -0.0864,
+   -0.0029,
+   5.7756
+  ],
+  "tris": 14006,
+  "bones": 22
+ },
+ "Os_Cote_Pteranodon": {
+  "center_studs": [
+   0.1848,
+   -0.0004,
+   5.0133
+  ],
+  "tris": 3430,
+  "bones": 17
+ },
+ "Os_Omoplate_Pteranodon": {
+  "center_studs": [
+   0.305,
+   -0.0012,
+   5.5413
+  ],
+  "tris": 1820,
+  "bones": 2
+ },
+ "Os_Bras_Pteranodon": {
+  "center_studs": [
+   1.2608,
+   -0.0008,
+   2.9368
+  ],
+  "tris": 10984,
+  "bones": 8
+ },
+ "Os_Aile_Pteranodon": {
+  "center_studs": [
+   -0.0342,
+   -0.0008,
+   3.0524
+  ],
+  "tris": 5818,
+  "bones": 8
+ },
+ "Os_Bassin_Pteranodon": {
+  "center_studs": [
+   -1.3272,
+   0.0007,
+   3.5989
+  ],
+  "tris": 5500,
+  "bones": 1
+ },
+ "Os_Femur_Pteranodon": {
+  "center_studs": [
+   -1.2463,
+   0.0013,
+   1.8478
+  ],
+  "tris": 3316,
+  "bones": 4
+ },
+ "Os_Pied_Pteranodon": {
+  "center_studs": [
+   -1.235,
+   -0.0,
+   0.1047
+  ],
+  "tris": 1800,
+  "bones": 2
+ }
+}
