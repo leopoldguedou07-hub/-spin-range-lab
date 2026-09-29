@@ -1,92 +1,92 @@
 {
  "Os_Dent_Dilophosaurus": {
   "center_studs": [
-   11.0598,
-   0.0004,
-   12.1195
+   11.0664,
+   0.0,
+   11.5721
   ],
   "tris": 5760,
   "bones": 64
  },
  "Os_Crane_Dilophosaurus": {
   "center_studs": [
-   10.8915,
-   0.0033,
-   12.4841
+   10.8903,
+   0.0015,
+   11.9498
   ],
   "tris": 6000,
   "bones": 1
  },
  "Os_Crete_Dilophosaurus": {
   "center_studs": [
-   11.0883,
-   0.0009,
-   12.9046
+   11.0928,
+   0.001,
+   12.3503
   ],
   "tris": 2500,
   "bones": 1
  },
  "Os_Machoire_Dilophosaurus": {
   "center_studs": [
-   10.8234,
-   0.0001,
-   12.1032
+   10.8203,
+   0.0008,
+   11.5216
   ],
-  "tris": 3996,
+  "tris": 4000,
   "bones": 2
  },
  "Os_Vertebre_Dilophosaurus": {
   "center_studs": [
-   2.9428,
-   0.0061,
-   10.9254
+   3.1395,
+   0.0033,
+   10.6406
   ],
   "tris": 19500,
   "bones": 24
  },
  "Os_Cote_Dilophosaurus": {
   "center_studs": [
-   1.3924,
-   -0.014,
-   7.6879
+   1.9833,
+   -0.0143,
+   7.6915
   ],
-  "tris": 16804,
+  "tris": 16876,
   "bones": 25
  },
  "Os_Griffe_Dilophosaurus": {
   "center_studs": [
-   4.7767,
-   0.0021,
-   7.2777
+   5.4296,
+   -0.0017,
+   7.2455
   ],
-  "tris": 7996,
+  "tris": 7998,
   "bones": 12
  },
  "Os_Bassin_Dilophosaurus": {
   "center_studs": [
-   -2.7272,
-   -0.0009,
-   7.6618
+   -2.2695,
+   -0.003,
+   7.6948
   ],
-  "tris": 11554,
+  "tris": 11642,
   "bones": 1
  },
  "Os_Femur_Dilophosaurus": {
   "center_studs": [
-   -2.4086,
-   0.0009,
-   4.4181
+   -1.9541,
+   -0.0016,
+   4.4232
   ],
-  "tris": 12228,
+  "tris": 12282,
   "bones": 8
  },
  "Os_Queue_Dilophosaurus": {
   "center_studs": [
-   -12.4449,
-   -0.0318,
-   9.1343
+   -12.2547,
+   -0.0283,
+   9.1527
   ],
-  "tris": 15031,
+  "tris": 15198,
   "bones": 45
  }
 }
