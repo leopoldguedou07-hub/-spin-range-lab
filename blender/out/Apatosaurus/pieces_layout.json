@@ -1,0 +1,92 @@
+{
+ "Os_Crane_Apatosaurus": {
+  "center_studs": [
+   35.5971,
+   0.0014,
+   32.5841
+  ],
+  "tris": 7160,
+  "bones": 25
+ },
+ "Os_Machoire_Apatosaurus": {
+  "center_studs": [
+   35.5221,
+   0.001,
+   32.0252
+  ],
+  "tris": 1500,
+  "bones": 1
+ },
+ "Os_Vertebre_Apatosaurus": {
+  "center_studs": [
+   13.3654,
+   -0.0061,
+   25.438
+  ],
+  "tris": 19500,
+  "bones": 26
+ },
+ "Os_Cote_Apatosaurus": {
+  "center_studs": [
+   1.6291,
+   0.0713,
+   14.4255
+  ],
+  "tris": 19500,
+  "bones": 20
+ },
+ "Os_Omoplate_Apatosaurus": {
+  "center_studs": [
+   5.3252,
+   0.0098,
+   15.7544
+  ],
+  "tris": 4600,
+  "bones": 2
+ },
+ "Os_Bras_Apatosaurus": {
+  "center_studs": [
+   7.8594,
+   -0.0011,
+   7.1515
+  ],
+  "tris": 11460,
+  "bones": 8
+ },
+ "Os_Bassin_Apatosaurus": {
+  "center_studs": [
+   -6.236,
+   0.0419,
+   16.2781
+  ],
+  "tris": 14936,
+  "bones": 1
+ },
+ "Os_Femur_Apatosaurus": {
+  "center_studs": [
+   -5.258,
+   -0.0089,
+   9.6102
+  ],
+  "tris": 12646,
+  "bones": 6
+ },
+ "Os_Pied_Apatosaurus": {
+  "center_studs": [
+   -4.8965,
+   0.0001,
+   1.3405
+  ],
+  "tris": 3600,
+  "bones": 2
+ },
+ "Os_Queue_Apatosaurus": {
+  "center_studs": [
+   -36.3004,
+   0.0488,
+   13.5942
+  ],
+  "tris": 19500,
+  "bones": 82
+ }
+}
