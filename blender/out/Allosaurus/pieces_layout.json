@@ -1,0 +1,92 @@
+{
+ "Os_Dent_Allosaurus": {
+  "center_studs": [
+   13.9751,
+   -0.0004,
+   13.7645
+  ],
+  "tris": 5580,
+  "bones": 62
+ },
+ "Os_Crane_Allosaurus": {
+  "center_studs": [
+   13.6088,
+   0.0004,
+   14.5602
+  ],
+  "tris": 7000,
+  "bones": 1
+ },
+ "Os_Machoire_Allosaurus": {
+  "center_studs": [
+   13.4781,
+   -0.0012,
+   13.6322
+  ],
+  "tris": 4400,
+  "bones": 2
+ },
+ "Os_Vertebre_Allosaurus": {
+  "center_studs": [
+   4.0853,
+   0.0057,
+   12.7748
+  ],
+  "tris": 19500,
+  "bones": 24
+ },
+ "Os_Cote_Allosaurus": {
+  "center_studs": [
+   2.7034,
+   -0.0136,
+   9.0602
+  ],
+  "tris": 18638,
+  "bones": 25
+ },
+ "Os_Griffe_Allosaurus": {
+  "center_studs": [
+   8.9767,
+   -0.0012,
+   5.7885
+  ],
+  "tris": 1000,
+  "bones": 2
+ },
+ "Os_Bras_Allosaurus": {
+  "center_studs": [
+   6.8498,
+   0.0003,
+   8.3662
+  ],
+  "tris": 6998,
+  "bones": 10
+ },
+ "Os_Bassin_Allosaurus": {
+  "center_studs": [
+   -2.2516,
+   -0.0077,
+   9.0667
+  ],
+  "tris": 12784,
+  "bones": 1
+ },
+ "Os_Femur_Allosaurus": {
+  "center_studs": [
+   -1.8828,
+   0.0041,
+   5.2747
+  ],
+  "tris": 15060,
+  "bones": 8
+ },
+ "Os_Queue_Allosaurus": {
+  "center_studs": [
+   -14.6066,
+   0.0182,
+   10.8613
+  ],
+  "tris": 19500,
+  "bones": 48
+ }
+}
