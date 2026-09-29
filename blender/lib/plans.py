@@ -330,8 +330,8 @@ def theropod_leg(add, P_, side, sg, A, K, Ank, sz, rng, toes=None, sickle=False,
 
 def sickle_claw(base, dd, length, rng):
     up = V([0, 0, 1])
-    pts = bezier(base, base + dd * length * 0.55 + up * length * 0.35, base + dd * length * 0.8 - up * length * 0.25,
-                 n=9, p3=base + dd * length * 0.6 - up * length * 0.75)
+    pts = bezier(base, base + dd * length * 0.45 + up * length * 0.3, base + dd * length * 0.85 + up * length * 0.05,
+                 n=9, p3=base + dd * length * 0.9 - up * length * 0.35)
     r = length * 0.16
     c = ribbon(pts, list(np.linspace(r, r * 0.05, 9)), list(np.linspace(r * 0.55, r * 0.03, 9)), up)
     return union(r * 0.2, c, ellipsoid(base, (r * 0.9, r * 0.6, r))).displace(r * 0.03, 3 / r, seed=int(rng.integers(1e4)))

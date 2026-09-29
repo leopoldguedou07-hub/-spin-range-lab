@@ -71,12 +71,12 @@ def cerv(t, i):
 
 def dors(t, i):
     cr = 0.14 + 0.01 * t
-    return 0.18, dict(cr=cr, ends='amphi', canal=cr * 0.3, sl=0.42 + 0.06 * np.sin(np.pi * t), tilt=0.05, sw=0.13,
+    return 0.18, dict(cr=cr, ends='amphi', canal=cr * 0.3, sl=0.42 + 0.06 * np.sin(np.pi * t), tilt=0.05, sw=0.075,
                       st=cr * 0.18, tl=0.3, tr=0.045, tu=0.12, zyg=cr * 0.35, pleuro=0.45, knob=0.7)
 
 
 def sacr(t, i):
-    return 0.19, dict(cr=0.14, ends='flat', canal=0.04, sl=0.3, tilt=0.0, sw=0.16, st=0.03, tl=0.22, tr=0.05, tu=0.05)
+    return 0.19, dict(cr=0.14, ends='flat', canal=0.04, sl=0.3, tilt=0.0, sw=0.08, st=0.03, tl=0.22, tr=0.05, tu=0.05)
 
 
 def caud(t, i):

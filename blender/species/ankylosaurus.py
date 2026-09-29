@@ -62,12 +62,13 @@ def features(add, frames, anc, rng):
     for bi, key in enumerate(body[::2]):
         c, fwd, up, p = frames[key]
         side = np.cross(up, fwd)
-        half_w = 0.9 if key[0] != 'caudal' else 0.6 * (1 - key[1] / 14)
+        half_w = 1.12 if key[0] != 'caudal' else 0.5 * (1 - key[1] / 16)
+        top = 0.34 if key[0] != 'caudal' else 0.2
         for a in np.linspace(-1, 1, 7 if key[0] != 'caudal' else 3):
-            ang = a * 1.25
-            pos = c + up * (0.45 * np.cos(ang) + 0.15) + side * half_w * np.sin(ang)
-            nrm = norm(up * np.cos(ang) + side * np.sin(ang))
-            size = 0.12 + 0.06 * (1 - abs(a))
+            ang = a * 1.35
+            pos = c + up * (top * np.cos(ang) - 0.25 * np.sin(ang) ** 2) + side * half_w * np.sin(ang)
+            nrm = norm(up * np.cos(ang) * half_w + side * np.sin(ang) * top)
+            size = 0.085 + 0.045 * (1 - abs(a))
             n += 1
             R = np.stack([fwd, np.cross(nrm, fwd), nrm], 1)
             M = np.eye(4)

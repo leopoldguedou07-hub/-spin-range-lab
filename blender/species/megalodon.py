@@ -176,31 +176,53 @@ def bones():
                     [0.05, 0.05, 0.05, 0.05, 0.05], V([1, 0, 0]))
     add('pectoral_girdle', ['FINS'], girdle.displace(0.008, 6, seed=13), 0.012, min_tris=2000)
 
-    def fin(base, dirv, spread_dir, length, width, n_rays, seed):
-        plate_d = ribbon([base, base + dirv * length * 0.25], [width * 0.35, width * 0.4], [0.035, 0.03], spread_dir)
-        parts = [plate_d]
-        for q in range(n_rays):
-            a = (q / (n_rays - 1) - 0.5)
-            rd = norm(dirv + spread_dir * a * 0.9)
-            st = base + dirv * length * 0.22 + spread_dir * a * width * 0.6
-            Lq = length * (1 - 0.55 * abs(a + 0.25))
-            pts = [st, st + rd * Lq * 0.5, st + rd * Lq + spread_dir * (-0.15 * Lq)]
-            parts.append(digit(pts, [0.022, 0.016, 0.006], knuckle=1.05, seed=seed + q))
-        return union(0.01, *parts).displace(0.004, 10, seed=seed)
+    def fin(o, u, v, outline, rays, seed, t=0.035):
+        """Fin as a thin cartilage sheet (outline in the u,v plane) with raised
+        ceratotrichia radiating from the fin base (rays: [(u0,v0,u1,v1)])."""
+        u, v = norm(u), norm(v - (v @ norm(u)) * norm(u))
+        w = np.cross(u, v)
+        R = np.stack([u, v, w], 1)
+        sheet = plate(o, R, outline, t, t * 0.25, falloff=0.35, rnd=0.01)
+        parts = [sheet]
+        for (u0, v0, u1, v1) in rays:
+            a_, b_ = o + R @ V([u0, v0, 0]), o + R @ V([u1, v1, 0])
+            parts.append(round_cone(a_, b_, t * 0.9, t * 0.3))
+        return union(0.01, *parts).displace(0.004, 8, seed=seed).detail(0.003, 20, seed=seed + 1)
+
+    def fan(n, root, tips):
+        """Rays from a base segment `root` [(u,v),(u,v)] to points along `tips`."""
+        out = []
+        for q in range(n):
+            s = q / (n - 1)
+            r0 = np.array(root[0]) * (1 - s) + np.array(root[1]) * s
+            idx = s * (len(tips) - 1)
+            i0 = int(min(idx, len(tips) - 2))
+            f = idx - i0
+            r1 = np.array(tips[i0]) * (1 - f) + np.array(tips[i0 + 1]) * f
+            out.append((r0[0], r0[1], r0[0] + (r1[0] - r0[0]) * 0.92, r0[1] + (r1[1] - r0[1]) * 0.92))
+        return out
+    from sdf import round_cone
+    # pectoral fins: long sickle, swept back and down
+    pect = [(0.0, -0.32), (0.0, 0.32), (1.2, 0.2), (2.3, -0.35), (1.3, -0.4)]
     for side, sg in (('L', 1), ('R', -1)):
-        b = V([gx + 0.05, sg * 0.7, 1.8])
-        add(f'pectoral_fin_{side}', ['FINS'], fin(b, norm(V([-0.7, sg * 0.6, -0.55])), norm(V([1, 0, -0.2])), 2.3,
-                                                  0.8, 11, 200 + sg), 0.01, weight=1.3, min_tris=3500)
-    # dorsal fin: triangular cartilage on a basal plate, supported by rays
-    db = V([0.8, 0.2, 2.75])
-    add('dorsal_fin', ['FINS'], fin(db, norm(V([-0.35, 0, 1])), V([1, 0, 0]), 1.7, 1.1, 12, 300), 0.01, weight=1.2,
-        min_tris=3000)
-    # caudal fin: the column bends into the upper lobe; the lower lobe is a fan of radials
-    cb = V([-6.9, -0.28, 2.95])
-    add('caudal_fin', ['FINS', 'TAIL'], fin(cb, norm(V([-0.55, 0.0, -1])), norm(V([1, 0, 0.4])), 2.5, 0.9, 12, 400),
-        0.01, weight=1.2, min_tris=3000)
+        b = V([gx + 0.05, sg * 0.72, 1.8])
+        add(f'pectoral_fin_{side}', ['FINS'],
+            fin(b, V([-0.65, sg * 0.55, -0.5]), V([1, 0, -0.1]), pect,
+                fan(10, [(0.05, -0.28), (0.05, 0.28)], [(1.3, -0.38), (2.2, -0.33), (1.2, 0.18)]), 200 + sg),
+            0.012, weight=1.3, min_tris=3000)
+    # dorsal fin: tall triangle on the back
+    dors = [(0.0, 0.0), (1.5, 0.0), (0.5, 1.7), (0.2, 1.6)]
+    add('dorsal_fin', ['FINS'], fin(V([-0.1, 0.18, 2.6]), V([1, 0, 0]), V([-0.3, 0, 1]), dors,
+                                    fan(10, [(0.1, 0.05), (1.4, 0.05)], [(0.25, 1.55), (0.5, 1.65), (1.3, 0.2)]), 300),
+        0.012, weight=1.2, min_tris=2500)
+    # caudal fin: crescent (heterocercal): column runs up the upper lobe; lower lobe below
+    cau = [(0.0, -0.2), (0.0, 0.35), (-1.9, 2.1), (-1.6, 2.2), (-1.3, 0.55), (-1.75, -1.5), (-1.45, -1.55), (-0.4, -0.6)]
+    add('caudal_fin', ['FINS', 'TAIL'], fin(V([-6.9, -0.22, 2.9]), V([1, 0, 0]), V([0, 0, 1]), cau,
+                                            fan(12, [(-0.05, -0.15), (-0.05, 0.3)], [(-1.7, -1.52), (-1.3, 0.4),
+                                                                                     (-1.75, 2.15)]), 400),
+        0.012, weight=1.2, min_tris=3000)
     # denticles: enlarged patch of placoid scales (tooth-shaped) on a skin plate
-    c = V([2.2, 0.62, 2.9])
+    c = V([2.2, 0.3, 2.62])
     base = plate(c, np.stack([V([1, 0, 0]), V([0, 0, 1]), V([0, 1, 0])], 1),
                  [(-0.25, -0.15), (0.25, -0.15), (0.25, 0.15), (-0.25, 0.15)], 0.01, 0.006, rnd=0.01)
     dents = []

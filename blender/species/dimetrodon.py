@@ -34,7 +34,7 @@ def skull(R, L, rng, add):
     holes = [(0.2, 0.08, 0.045, 0.045, 0.04),     # orbit
              (0.08, 0.0, 0.035, 0.06, 0.04),      # single temporal fenestra (synapsid)
              (0.44, 0.03, 0.018, 0.012, 0.02)]    # naris
-    sk = skull_shell(L, R, prof, 0.07, 0.035, 0.46, holes, rnd=0.005)
+    sk = skull_shell(L, R, prof, 0.07, 0.03, 0.46, holes, rnd=0.008, t_edge=0.018, falloff=0.06)
     sk = union(0.005, sk, ellipsoid(L(-0.015, 0, -0.02), (0.015, 0.015, 0.015), R))
     add('skull', ['SKULL'], sk.displace(0.0015, 40, seed=5, octaves=4).detail(0.0016, 90, seed=6), 0.0014,
         weight=2.0, min_tris=5000)
