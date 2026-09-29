@@ -104,5 +104,6 @@ bl.render(os.path.join(REN, f'{KEY}_pieces.png'), res=(1280, 720), samples=16)
 for o in pieces:
     o.location = saved[o.name]
 bl.frame(pieces, cam, (0.55, -1.0, 0.22))
+bl.show_pieces(pieces, KEY)
 bpy.ops.wm.save_as_mainfile(filepath=os.path.join(OUT, f'Espece_{KEY}.blend'), compress=True)
 print('done', KEY)

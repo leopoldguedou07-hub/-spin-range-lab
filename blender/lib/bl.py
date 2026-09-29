@@ -426,3 +426,29 @@ def export(objs, path_noext, fmt):
     elif fmt == 'obj':
         bpy.ops.wm.obj_export(filepath=path_noext + '.obj', export_selected_objects=True,
                               export_materials=True)
+
+
+PIECE_COLORS = ['#E6194B', '#3CB44B', '#FFE119', '#4363D8', '#F58231', '#911EB4',
+                '#42D4F4', '#F032E6', '#BFEF45', '#FABED4', '#469990', '#DCBEFF']
+
+
+def show_pieces(pieces, key):
+    """Open the file on the cut: only the pieces are visible in the viewport, each in
+    its own colour (Solid shading, Object colour); renders keep the ivory material."""
+    for i, o in enumerate(pieces):
+        h = PIECE_COLORS[i % len(PIECE_COLORS)].lstrip('#')
+        o.color = [int(h[j:j + 2], 16) / 255 for j in (0, 2, 4)] + [1.0]
+    for lc in bpy.context.view_layer.layer_collection.children:
+        if lc.name.startswith('LOD_'):
+            lc.exclude = True
+        elif lc.name.startswith('SKELETON_'):
+            lc.hide_viewport = True
+        elif lc.name == f'Pieces_{key}':
+            lc.exclude = False
+            lc.hide_viewport = False
+    for s in bpy.data.screens:
+        for a in s.areas:
+            if a.type == 'VIEW_3D':
+                sh = a.spaces[0].shading
+                sh.type = 'SOLID'
+                sh.color_type = 'OBJECT'
