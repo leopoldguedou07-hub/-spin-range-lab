@@ -1,0 +1,110 @@
+{
+ "Os_Dent_Mammouth": {
+  "center_studs": [
+   9.3632,
+   0.002,
+   9.7331
+  ],
+  "tris": 1962,
+  "bones": 4
+ },
+ "Os_Defense_Mammouth": {
+  "center_studs": [
+   14.4639,
+   -0.0015,
+   8.7174
+  ],
+  "tris": 10198,
+  "bones": 2
+ },
+ "Os_Crane_Mammouth": {
+  "center_studs": [
+   9.5585,
+   -0.0029,
+   12.1997
+  ],
+  "tris": 19500,
+  "bones": 1
+ },
+ "Os_Machoire_Mammouth": {
+  "center_studs": [
+   9.3574,
+   -0.0086,
+   9.8517
+  ],
+  "tris": 5578,
+  "bones": 1
+ },
+ "Os_Cote_Mammouth": {
+  "center_studs": [
+   -0.3934,
+   0.0059,
+   9.2625
+  ],
+  "tris": 19500,
+  "bones": 41
+ },
+ "Os_Omoplate_Mammouth": {
+  "center_studs": [
+   3.9414,
+   -0.0067,
+   12.0683
+  ],
+  "tris": 6126,
+  "bones": 2
+ },
+ "Os_Bras_Mammouth": {
+  "center_studs": [
+   5.4144,
+   0.0034,
+   5.3892
+  ],
+  "tris": 14956,
+  "bones": 8
+ },
+ "Os_Bassin_Mammouth": {
+  "center_studs": [
+   -5.5992,
+   0.0019,
+   9.9728
+  ],
+  "tris": 10548,
+  "bones": 1
+ },
+ "Os_Femur_Mammouth": {
+  "center_studs": [
+   -4.8558,
+   0.0042,
+   6.9275
+  ],
+  "tris": 5496,
+  "bones": 4
+ },
+ "Os_Tibia_Mammouth": {
+  "center_studs": [
+   -4.8563,
+   0.0035,
+   3.2169
+  ],
+  "tris": 4138,
+  "bones": 4
+ },
+ "Os_Pied_Mammouth": {
+  "center_studs": [
+   -4.8893,
+   0.0243,
+   0.8279
+  ],
+  "tris": 4000,
+  "bones": 2
+ },
+ "Os_Vertebre_Mammouth": {
+  "center_studs": [
+   -0.8566,
+   -0.0013,
+   9.9234
+  ],
+  "tris": 19500,
+  "bones": 55
+ }
+}

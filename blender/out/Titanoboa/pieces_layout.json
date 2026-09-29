@@ -1,0 +1,110 @@
+{
+ "Os_Dent_Titanoboa": {
+  "center_studs": [
+   0.7054,
+   -0.1748,
+   6.4404
+  ],
+  "tris": 5724,
+  "bones": 96
+ },
+ "Os_Crane_Titanoboa": {
+  "center_studs": [
+   0.6245,
+   -0.1652,
+   6.7383
+  ],
+  "tris": 3500,
+  "bones": 1
+ },
+ "Os_Maxillaire_Titanoboa": {
+  "center_studs": [
+   0.8463,
+   -0.2069,
+   6.457
+  ],
+  "tris": 998,
+  "bones": 2
+ },
+ "Os_Machoire_Titanoboa": {
+  "center_studs": [
+   0.4117,
+   -0.0388,
+   6.4891
+  ],
+  "tris": 1800,
+  "bones": 2
+ },
+ "Os_Carre_Titanoboa": {
+  "center_studs": [
+   -0.2146,
+   0.0931,
+   6.9216
+  ],
+  "tris": 600,
+  "bones": 2
+ },
+ "Os_Pterygoide_Titanoboa": {
+  "center_studs": [
+   0.3523,
+   -0.0488,
+   6.5962
+  ],
+  "tris": 998,
+  "bones": 2
+ },
+ "Os_Atlas_Titanoboa": {
+  "center_studs": [
+   -0.3363,
+   0.123,
+   7.0204
+  ],
+  "tris": 510,
+  "bones": 3
+ },
+ "Os_Cervicale_Titanoboa": {
+  "center_studs": [
+   -1.7285,
+   0.7281,
+   6.746
+  ],
+  "tris": 1998,
+  "bones": 11
+ },
+ "Os_Cote_Titanoboa": {
+  "center_studs": [
+   -25.9673,
+   -0.2992,
+   3.4822
+  ],
+  "tris": 19500,
+  "bones": 338
+ },
+ "Os_Vertebre_Titanoboa": {
+  "center_studs": [
+   -26.8127,
+   -0.2477,
+   4.5867
+  ],
+  "tris": 19500,
+  "bones": 158
+ },
+ "Os_Caudale_Titanoboa": {
+  "center_studs": [
+   -52.071,
+   -1.0336,
+   3.1397
+  ],
+  "tris": 2756,
+  "bones": 13
+ },
+ "Os_Queue_Titanoboa": {
+  "center_studs": [
+   -54.1584,
+   -1.8456,
+   2.9315
+  ],
+  "tris": 2550,
+  "bones": 15
+ }
+}

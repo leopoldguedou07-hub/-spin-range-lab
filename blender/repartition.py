@@ -93,14 +93,14 @@ for o in bpy.context.scene.objects:
 mn, mx = bl.bounds(pieces)
 c = (mn + mx) / 2
 bl.frame(pieces, cam, (0.55, -1.0, 0.25))
-bl.render(os.path.join(REN, f'{KEY}_pieces_assemblees.png'), samples=40)
+bl.render(os.path.join(REN, f'{KEY}_pieces_assemblees.png'), res=(1280, 720), samples=16)
 saved = {o.name: o.location.copy() for o in pieces}
 for o in pieces:
     d = o.location - c
     o.location = o.location + Vector((d.x * 0.35, d.y * 1.2 + (0.8 if d.y >= 0 else -0.8), d.z * 0.35))
 bpy.context.view_layer.update()
 bl.frame(pieces, cam, (0.45, -1.0, 0.45))
-bl.render(os.path.join(REN, f'{KEY}_pieces.png'), samples=40)
+bl.render(os.path.join(REN, f'{KEY}_pieces.png'), res=(1280, 720), samples=16)
 for o in pieces:
     o.location = saved[o.name]
 bl.frame(pieces, cam, (0.55, -1.0, 0.22))
