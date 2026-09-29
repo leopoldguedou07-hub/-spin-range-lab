@@ -1,0 +1,92 @@
+{
+ "Os_Dent_Dunkleosteus": {
+  "center_studs": [
+   10.6375,
+   -0.0004,
+   3.0948
+  ],
+  "tris": 3200,
+  "bones": 4
+ },
+ "Os_Crane_Dunkleosteus": {
+  "center_studs": [
+   8.7759,
+   -0.0021,
+   5.3997
+  ],
+  "tris": 19500,
+  "bones": 1
+ },
+ "Os_Machoire_Dunkleosteus": {
+  "center_studs": [
+   9.7722,
+   -0.0014,
+   3.224
+  ],
+  "tris": 5000,
+  "bones": 2
+ },
+ "Os_Branchie_Dunkleosteus": {
+  "center_studs": [
+   5.6569,
+   0.0004,
+   4.1013
+  ],
+  "tris": 5046,
+  "bones": 1
+ },
+ "Os_Plaque_Dunkleosteus": {
+  "center_studs": [
+   3.7022,
+   0.0021,
+   4.7682
+  ],
+  "tris": 19499,
+  "bones": 1
+ },
+ "Os_Ceinture_Dunkleosteus": {
+  "center_studs": [
+   4.4929,
+   -0.0052,
+   3.3841
+  ],
+  "tris": 3372,
+  "bones": 1
+ },
+ "Os_Nageoire_Dunkleosteus": {
+  "center_studs": [
+   2.8583,
+   0.0119,
+   1.611
+  ],
+  "tris": 6764,
+  "bones": 2
+ },
+ "Os_NageoireDorsale_Dunkleosteus": {
+  "center_studs": [
+   -5.4267,
+   0.4727,
+   7.2088
+  ],
+  "tris": 3972,
+  "bones": 1
+ },
+ "Os_Vertebre_Dunkleosteus": {
+  "center_studs": [
+   -5.8076,
+   0.0609,
+   4.7956
+  ],
+  "tris": 16226,
+  "bones": 65
+ },
+ "Os_Queue_Dunkleosteus": {
+  "center_studs": [
+   -18.0057,
+   -0.5302,
+   6.6186
+  ],
+  "tris": 14788,
+  "bones": 26
+ }
+}
