@@ -1,0 +1,92 @@
+{
+ "Os_Dent_Carcharodontosaurus": {
+  "center_studs": [
+   21.8636,
+   0.0012,
+   17.672
+  ],
+  "tris": 4860,
+  "bones": 54
+ },
+ "Os_Crane_Carcharodontosaurus": {
+  "center_studs": [
+   20.7493,
+   0.0007,
+   19.0412
+  ],
+  "tris": 11582,
+  "bones": 1
+ },
+ "Os_Machoire_Carcharodontosaurus": {
+  "center_studs": [
+   20.687,
+   -0.0022,
+   17.6349
+  ],
+  "tris": 4998,
+  "bones": 2
+ },
+ "Os_Vertebre_Carcharodontosaurus": {
+  "center_studs": [
+   5.1748,
+   0.006,
+   17.04
+  ],
+  "tris": 19500,
+  "bones": 24
+ },
+ "Os_Cote_Carcharodontosaurus": {
+  "center_studs": [
+   2.5539,
+   -0.0046,
+   12.2367
+  ],
+  "tris": 19500,
+  "bones": 25
+ },
+ "Os_Bras_Carcharodontosaurus": {
+  "center_studs": [
+   8.3434,
+   0.0008,
+   12.0384
+  ],
+  "tris": 7000,
+  "bones": 10
+ },
+ "Os_Bassin_Carcharodontosaurus": {
+  "center_studs": [
+   -5.0107,
+   -0.0052,
+   12.2189
+  ],
+  "tris": 13976,
+  "bones": 1
+ },
+ "Os_Femur_Carcharodontosaurus": {
+  "center_studs": [
+   -4.5612,
+   0.0026,
+   8.4318
+  ],
+  "tris": 12036,
+  "bones": 6
+ },
+ "Os_Pied_Carcharodontosaurus": {
+  "center_studs": [
+   -4.3742,
+   -0.0279,
+   1.6409
+  ],
+  "tris": 3594,
+  "bones": 2
+ },
+ "Os_Queue_Carcharodontosaurus": {
+  "center_studs": [
+   -22.3934,
+   0.0314,
+   14.8936
+  ],
+  "tris": 19500,
+  "bones": 44
+ }
+}
