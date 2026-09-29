@@ -1,0 +1,92 @@
+{
+ "Os_Dent_Aenocyon": {
+  "center_studs": [
+   4.1446,
+   -0.0002,
+   3.2816
+  ],
+  "tris": 4078,
+  "bones": 34
+ },
+ "Os_Crane_Aenocyon": {
+  "center_studs": [
+   3.7999,
+   -0.0014,
+   3.7493
+  ],
+  "tris": 11734,
+  "bones": 1
+ },
+ "Os_Machoire_Aenocyon": {
+  "center_studs": [
+   3.8212,
+   -0.0005,
+   3.4811
+  ],
+  "tris": 3574,
+  "bones": 1
+ },
+ "Os_Vertebre_Aenocyon": {
+  "center_studs": [
+   -0.8155,
+   0.0066,
+   2.4546
+  ],
+  "tris": 19500,
+  "bones": 48
+ },
+ "Os_Cote_Aenocyon": {
+  "center_studs": [
+   0.5548,
+   0.0,
+   2.709
+  ],
+  "tris": 12476,
+  "bones": 27
+ },
+ "Os_Omoplate_Aenocyon": {
+  "center_studs": [
+   1.4633,
+   -0.0005,
+   3.1168
+  ],
+  "tris": 2400,
+  "bones": 2
+ },
+ "Os_Bras_Aenocyon": {
+  "center_studs": [
+   1.412,
+   -0.0017,
+   1.6759
+  ],
+  "tris": 6460,
+  "bones": 6
+ },
+ "Os_Bassin_Aenocyon": {
+  "center_studs": [
+   -1.8844,
+   0.0014,
+   3.1344
+  ],
+  "tris": 2436,
+  "bones": 1
+ },
+ "Os_Femur_Aenocyon": {
+  "center_studs": [
+   -1.7165,
+   0.0003,
+   1.8291
+  ],
+  "tris": 7256,
+  "bones": 6
+ },
+ "Os_Pied_Aenocyon": {
+  "center_studs": [
+   -0.1788,
+   -0.0002,
+   0.3165
+  ],
+  "tris": 7600,
+  "bones": 4
+ }
+}
