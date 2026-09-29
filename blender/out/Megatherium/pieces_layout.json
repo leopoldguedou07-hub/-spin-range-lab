@@ -1,0 +1,92 @@
+{
+ "Os_Dent_Megatherium": {
+  "center_studs": [
+   13.6422,
+   -0.0,
+   8.439
+  ],
+  "tris": 1940,
+  "bones": 18
+ },
+ "Os_Crane_Megatherium": {
+  "center_studs": [
+   13.446,
+   -0.0106,
+   9.0877
+  ],
+  "tris": 6542,
+  "bones": 1
+ },
+ "Os_Machoire_Megatherium": {
+  "center_studs": [
+   13.4277,
+   -0.0017,
+   8.5148
+  ],
+  "tris": 5478,
+  "bones": 1
+ },
+ "Os_Vertebre_Megatherium": {
+  "center_studs": [
+   3.8742,
+   0.0179,
+   10.9207
+  ],
+  "tris": 19500,
+  "bones": 27
+ },
+ "Os_Cote_Megatherium": {
+  "center_studs": [
+   4.1417,
+   0.0065,
+   8.1096
+  ],
+  "tris": 19500,
+  "bones": 33
+ },
+ "Os_Griffe_Megatherium": {
+  "center_studs": [
+   9.8028,
+   -0.0,
+   0.4411
+  ],
+  "tris": 2400,
+  "bones": 2
+ },
+ "Os_Bras_Megatherium": {
+  "center_studs": [
+   8.3943,
+   -0.0027,
+   5.4516
+  ],
+  "tris": 18586,
+  "bones": 10
+ },
+ "Os_Bassin_Megatherium": {
+  "center_studs": [
+   -2.219,
+   0.0033,
+   9.5836
+  ],
+  "tris": 6616,
+  "bones": 1
+ },
+ "Os_Femur_Megatherium": {
+  "center_studs": [
+   -1.5746,
+   -0.0031,
+   5.158
+  ],
+  "tris": 19500,
+  "bones": 8
+ },
+ "Os_Queue_Megatherium": {
+  "center_studs": [
+   -6.6898,
+   -0.0119,
+   7.0045
+  ],
+  "tris": 9886,
+  "bones": 18
+ }
+}
