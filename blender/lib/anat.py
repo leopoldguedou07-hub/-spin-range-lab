@@ -6,6 +6,9 @@ from sdf import (V, norm, frame, rot, sphere, ellipsoid, box, round_cone, tube,
                  ribbon, plate, union, smin, smax, Shape, bezier, mirror_y)
 
 
+DETAIL = 0.0   # species set this >0 for scan-like ridged micro-relief
+
+
 def local(c, fwd, up):
     """Return (R, L) where L(u, v, w) maps local coords to world."""
     fwd = norm(fwd)
@@ -112,7 +115,8 @@ def vertebra(c, fwd, up, p, rng):
                              [cr * 0.28, cr * 0.12], [cr * 0.1, cr * 0.06], fwd))
 
     v = union(cr * 0.18, body, *extras).sub(canal_tube, canal * 0.25)
-    return v.displace(cr * 0.035, 3.0 / cr, seed=rng.integers(1000))
+    sd = int(rng.integers(1000))
+    return v.displace(cr * 0.035, 3.0 / cr, seed=sd).detail(cr * 0.03 * DETAIL, 7.0 / cr, seed=sd + 1)
 
 
 # ------------------------------------------------------------------- rib ---
@@ -125,7 +129,7 @@ def rib(head, tuber, pts, width, thick, wdir=(1, 0, 0), rng=None, seed=0):
     blade = ribbon(pts, width, thick, wdir)
     caps = [sphere(head, w0 * 0.42), sphere(tuber, w0 * 0.35)]
     r = union(w0 * 0.25, blade, neck, tub, *caps)
-    return r.displace(t0 * 0.12, 1.2 / w0, seed=seed)
+    return r.displace(t0 * 0.12, 1.2 / w0, seed=seed).detail(t0 * 0.08 * DETAIL, 4.0 / w0, seed=seed + 1)
 
 
 # --------------------------------------------------------------- long bones ---
@@ -188,7 +192,7 @@ def long_bone(p0, p1, r0, rs, r1, lat, prox='ball', dist='condyles', bow=0.0, bo
         bone = bone.sub(sphere(p0 - ax * r0 * 0.9, r0 * 0.95), r0 * 0.1)
     if dist == 'pulley':
         bone = bone.sub(ellipsoid(p1 + ax * r1 * 0.05, (r1 * 0.3, r1 * 1.3, r1 * 0.3), frame(lat, ax)), r1 * 0.1)
-    return bone.displace(rs * 0.05, 1.6 / rs, seed=seed)
+    return bone.displace(rs * 0.05, 1.6 / rs, seed=seed).detail(rs * 0.035 * DETAIL, 5.0 / rs, seed=seed + 1)
 
 
 # --------------------------------------------------------------- digits ---
@@ -213,7 +217,8 @@ def digit(pts, radii, knuckle=1.25, claw=None, hoof=None, seed=0):
     if hoof:
         a = V(pts[-1], float)
         parts.append(ellipsoid(a, hoof['radii'], hoof.get('R')))
-    return union(min(radii) * 0.3, *parts).displace(min(radii) * 0.05, 1.0 / min(radii), seed=seed)
+    return union(min(radii) * 0.3, *parts).displace(min(radii) * 0.05, 1.0 / min(radii), seed=seed).detail(
+        min(radii) * 0.05 * DETAIL, 4.0 / min(radii), seed=seed + 1)
 
 
 def carpal_block(c, radii, R, n=6, rng=None, seed=0):

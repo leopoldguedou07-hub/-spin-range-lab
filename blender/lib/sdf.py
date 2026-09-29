@@ -115,6 +115,18 @@ class Shape:
         return Shape(lambda P: a(P) + amp * NOISE.fbm(P * freq + off, octaves),
                      a.lo - amp, a.hi + amp)
 
+    def detail(self, amp, freq, seed=0):
+        """Scan-like bony micro-relief: ridged noise (sharp crests, pits)."""
+        if amp <= 0:
+            return self
+        a = self
+        off = V([seed * 5.1, seed * 11.9, seed * 2.7])
+
+        def f(P):
+            n = NOISE.fbm(P * freq + off, 2)
+            return a(P) + amp * (np.abs(n) * 2.0 - 0.5)
+        return Shape(f, a.lo - amp, a.hi + amp)
+
     def grow(self, r):
         a = self
         return Shape(lambda P: a(P) - r, a.lo - r, a.hi + r)
