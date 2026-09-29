@@ -203,6 +203,12 @@ def main():
             o.location = loc
         for fmt in ('fbx', 'glb', 'obj'):
             bl.export(sk, os.path.join(ex, f'Squelette_{KEY}'), fmt)
+    # cut the full skeleton into the catalogue pieces (partition.py rules)
+    if EXPORT:
+        import subprocess
+        from partition import PARTS
+        if KEY in PARTS:
+            subprocess.run([sys.executable, os.path.join(HERE, 'repartition.py'), KEY], check=True)
     print(f'done in {time.time() - t0:.1f}s')
 
 
