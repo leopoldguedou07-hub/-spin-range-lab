@@ -1,7 +1,8 @@
 # Bande-annonce « Le Dinosaure — Édition Mythique »
 
 Motion design 3D (three.js) avec les squelettes Meshy du Mammouth, du Titanoboa et du Mosasaure.
-Durée 53 s : intro, titre, une séquence de fouille par espèce, finale.
+Durée 65 s : intro, titre, 12 s d'images du jeu (`plates.webm`, tirées de la capture Desert Ancien), une séquence de fouille par espèce, finale.
+Vidéo finale : `LeDinosaure_Mythique.mp4`.
 
 | Fichier | Rôle |
 |---|---|
@@ -19,9 +20,9 @@ Durée 53 s : intro, titre, une séquence de fouille par espèce, finale.
 cd motion
 npm i three@0.169.0 playwright-core @gltf-transform/core   # une fois
 pip install numpy && python3 audio.py
-node render.mjs                        # -> out/video_seule.mp4 (~1 h en CPU)
+node render.mjs --to 65                # -> out/video_seule.mp4 (~1 h 15 en CPU)
 node render.mjs --stills 10.5,25,38    # images de contrôle
-ffmpeg -i out/video_seule.mp4 -i audio/bande_son.mp3 -c:v copy -c:a aac -b:a 192k -shortest LeDinosaure_Mythique.mp4
+ffmpeg -i out/video_seule.mp4 -i audio/bande_son.wav -c:v libx264 -crf 22 -maxrate 7M -bufsize 14M -pix_fmt yuv420p -c:a aac -b:a 192k -shortest LeDinosaure_Mythique.mp4
 ```
 
-Les moments clés (secondes) sont dans `TL` en haut de `film.js` et dans `audio.py`. Si tu changes l'un, change l'autre.
+Les moments clés (secondes) sont dans `TL`/`CLIPS` en haut de `film.js` et dans `audio.py`. Si tu changes l'un, change l'autre.
