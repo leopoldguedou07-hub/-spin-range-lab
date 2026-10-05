@@ -136,8 +136,8 @@ void main(){ float d=length(gl_PointCoord-.5); if(vA<.002) discard; gl_FragColor
   return p;
 }
 
-async function loadCreature(loader, url, len) {
-  const g = await loader.loadAsync(url);
+async function loadCreature(loader, src, len) {
+  const g = typeof src === 'string' ? await loader.loadAsync(src) : await loader.parseAsync(src.buffer, src.path);
   let mesh = null;
   g.scene.traverse(o => { if (o.isMesh && !mesh) mesh = o; });
   mesh.updateMatrixWorld(true);
@@ -754,8 +754,21 @@ export async function createFilm({ canvas, base = '.', onProgress = () => {} }) 
 
   const loader = new GLTFLoader();
   let done = 0;
-  const load = (f, len) => loadCreature(loader, `${base}/models/${f}.json`, len).then(c => { onProgress(++done / 3); return c; });
-  const [mam, ser, mos] = await Promise.all([load('mammouth', 4.6), load('serpent', 5.2), load('predateur', 6.4)]);
+  // géométrie = GLB en base64 dans un module JS, textures = .jpg à côté (chargées par <img>)
+  const geoUrl = f => new URL(`${base}/models/${f}.geo.js`, location.href).href;
+  const load = async (f, len) => {
+    const b64 = (await import(/* @vite-ignore */ geoUrl(f))).default;
+    const bin = atob(b64), bytes = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+    const c = await loadCreature(loader, { buffer: bytes.buffer, path: new URL(`${base}/models/`, location.href).href }, len);
+    onProgress(++done / 3);
+    return c;
+  };
+  const cib = self.createImageBitmap;
+  self.createImageBitmap = undefined;   // force TextureLoader (<img>) au lieu de fetch
+  let mam, ser, mos;
+  try { [mam, ser, mos] = await Promise.all([load('mammouth', 4.6), load('serpent', 5.2), load('predateur', 6.4)]); }
+  finally { self.createImageBitmap = cib; }
   [mam, ser, mos].forEach(c => scene.add(c.group));
   const holo = makeHolo(mos.mesh.geometry, mos.u); mos.mesh.add(holo);
   mos.mesh.add(scan.mesh);

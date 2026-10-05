@@ -71,9 +71,10 @@ if (capture) {
   window.filmReady = true;
 } else {
   // résolution interne adaptée à l'écran (max 1080p)
+  let scale = 1, acc = 0, cnt = 0, last = 0;
   const fit = () => {
     const r = document.getElementById('frame').getBoundingClientRect();
-    const w = Math.min(1920, Math.round(r.width * Math.min(devicePixelRatio, 2)));
+    const w = Math.max(480, Math.round(Math.min(1920, r.width * Math.min(devicePixelRatio, 2)) * scale));
     film.setSize(w, Math.round(w * 9 / 16));
     ovc.width = film.overlay.width; ovc.height = film.overlay.height;
   };
@@ -81,7 +82,18 @@ if (capture) {
   const octx = ovc.getContext('2d');
   let playing = false, t0 = 0, paused = false, pausedAt = 0;
   const now = () => (music.readyState >= 2 && !music.error && !music.paused ? music.currentTime : (performance.now() - t0) / 1000);
-  function frame() {
+  // résolution dynamique : on baisse si l'appareil n'arrive pas à suivre
+  function adapt(ts) {
+    if (last) { acc += ts - last; cnt++; }
+    last = ts;
+    if (cnt === 30) {
+      const ms = acc / cnt; acc = cnt = 0;
+      const next = ms > 45 ? Math.max(.4, scale * .75) : ms < 22 ? Math.min(1, scale * 1.15) : scale;
+      if (Math.abs(next - scale) > .01) { scale = next; fit(); }
+    }
+  }
+  function frame(ts) {
+    adapt(ts);
     let t = paused ? pausedAt : now();
     if (t >= film.duration) { t = film.duration - .01; playing = false; ui.classList.remove('hidden'); go.textContent = '▶ REVOIR'; }
     film.render(t);

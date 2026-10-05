@@ -10,7 +10,7 @@ Durée 53 s : intro, titre, une séquence de fouille par espèce, finale.
 | `film.js` | Toute la scène : sol procédural (terre fissurée, dunes, fond marin, plateforme), squelettes qui brillent, particules, débris, pilier de lumière, scan, hologramme, post-traitement, textes. Tout dépend uniquement du temps `t`. |
 | `audio.py` | Bande-son synthétisée et calée sur la timeline → `audio/bande_son.mp3`. |
 | `render.mjs` | Rend la vidéo image par image (Chromium sans écran) puis l'encode en MP4. |
-| `to_gltf.mjs` | Convertit `models/*.glb` en `.json` + `.jpg` (format utilisé par la page). |
+| `to_gltf.mjs`, `to_web.mjs` | `models/*.glb` → `.json` + `.jpg`, puis → `models/*.geo.js` (géométrie en base64, chargée par la page). |
 | `models/` | Modèles allégés (textures 1024 px) : `.glb` à importer dans Roblox Studio, `.json`/`.jpg` pour la page. |
 
 ## Refaire la vidéo
