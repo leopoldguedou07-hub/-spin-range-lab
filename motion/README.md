@@ -6,6 +6,7 @@ Durée 53 s : intro, titre, une séquence de fouille par espèce, finale.
 | Fichier | Rôle |
 |---|---|
 | `index.html` | Lecteur temps réel (bouton « Lancer », son, pause, rejouer). |
+| `film.bundle.js` | `film.js` + three.js regroupés (`npx esbuild film.js --bundle --format=esm --minify --outfile=film.bundle.js`), chargé par la page. |
 | `film.js` | Toute la scène : sol procédural (terre fissurée, dunes, fond marin, plateforme), squelettes qui brillent, particules, débris, pilier de lumière, scan, hologramme, post-traitement, textes. Tout dépend uniquement du temps `t`. |
 | `audio.py` | Bande-son synthétisée et calée sur la timeline → `audio/bande_son.mp3`. |
 | `render.mjs` | Rend la vidéo image par image (Chromium sans écran) puis l'encode en MP4. |

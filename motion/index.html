@@ -27,12 +27,6 @@
   #frame:hover #ctrl { opacity: 1; }
   #ctrl button { padding: .35em .9em; font-size: 13px; letter-spacing: .15em; }
 </style>
-<script type="importmap">
-{ "imports": {
-  "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.min.js",
-  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
-} }
-</script>
 <div id="stage">
   <div id="frame">
     <canvas id="gl"></canvas>
@@ -43,22 +37,33 @@
       <div>
         <h1>LE DINOSAURE</h1>
         <p>ÉDITION MYTHIQUE</p>
-        <button id="go" disabled>CHARGEMENT…</button>
+        <button id="go" disabled>CHARGEMENT 0 %</button>
       </div>
     </div>
   </div>
 </div>
 <audio id="music" src="audio/bande_son.mp3" preload="auto"></audio>
 <script type="module">
-import { createFilm } from './film.js';
+import { createFilm } from './film.bundle.js';
 
 const capture = new URLSearchParams(location.search).has('capture');
 const gl = document.getElementById('gl'), ovc = document.getElementById('ov');
 const go = document.getElementById('go'), ui = document.getElementById('ui'), bar = document.getElementById('bar');
 const music = document.getElementById('music');
 
-await Promise.all(['700 40px Cinzel', '900 40px Cinzel', '600 20px Rajdhani', '700 20px Rajdhani'].map(f => document.fonts.load(f)));
-const film = await createFilm({ canvas: gl, onProgress: p => (go.textContent = `CHARGEMENT ${Math.round(p * 100)} %`) });
+const fontsReady = Promise.all(['700 40px Cinzel', '900 40px Cinzel', '600 20px Rajdhani', '700 20px Rajdhani'].map(f => document.fonts.load(f))).catch(() => {});
+await Promise.race([fontsReady, new Promise(r => setTimeout(r, 4000))]);
+let film;
+try {
+  film = await createFilm({ canvas: gl, onProgress: p => (go.textContent = `CHARGEMENT ${Math.round(p * 100)} %`) });
+} catch (e) {
+  go.textContent = 'ERREUR DE CHARGEMENT';
+  const msg = document.createElement('p');
+  msg.textContent = String(e && e.message || e);
+  msg.style.cssText = 'letter-spacing:0;font-weight:600;color:#f3e7cf;max-width:60ch;margin:1em auto 0';
+  go.after(msg);
+  throw e;
+}
 
 if (capture) {
   ui.remove();
