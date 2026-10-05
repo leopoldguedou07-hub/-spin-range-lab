@@ -1,2 +1,5 @@
 *.blend1
 __pycache__/
+motion/node_modules
+motion/out/
+motion/audio/*.wav

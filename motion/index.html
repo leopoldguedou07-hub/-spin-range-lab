@@ -1,0 +1,103 @@
+<title>Le Dinosaure Mythique</title>
+<style>
+  @font-face { font-family: 'Cinzel'; font-weight: 700; src: url(fonts/cinzel-latin-700-normal.woff2) format('woff2'); }
+  @font-face { font-family: 'Cinzel'; font-weight: 900; src: url(fonts/cinzel-latin-900-normal.woff2) format('woff2'); }
+  @font-face { font-family: 'Rajdhani'; font-weight: 600; src: url(fonts/rajdhani-latin-600-normal.woff2) format('woff2'); }
+  @font-face { font-family: 'Rajdhani'; font-weight: 700; src: url(fonts/rajdhani-latin-700-normal.woff2) format('woff2'); }
+  :root { --bg: #050304; --fg: #f3e7cf; --red: #ff2a55; --gold: #f6c768; }
+  * { box-sizing: border-box; }
+  :root { color-scheme: dark; }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--fg); overflow: hidden; font-family: 'Rajdhani', system-ui, sans-serif; }
+  #stage { position: absolute; inset: 0; display: grid; place-items: center; }
+  #frame { position: relative; width: min(100vw, 177.78vh); aspect-ratio: 16 / 9; background: #000; }
+  #frame canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  #ui { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; background: radial-gradient(ellipse at center, rgba(60,10,20,.55), rgba(0,0,0,.92)); transition: opacity .6s; }
+  #ui.hidden { opacity: 0; pointer-events: none; }
+  #ui h1 { font-family: 'Cinzel'; font-weight: 900; font-size: clamp(28px, 7vw, 92px); margin: 0; letter-spacing: .08em;
+    background: linear-gradient(#fff8e6, #f6d38a 45%, #d9932f 75%, #7a4410); -webkit-background-clip: text; background-clip: text; color: transparent;
+    filter: drop-shadow(0 0 18px rgba(255,130,40,.55)); }
+  #ui p { margin: .4em 0 1.4em; letter-spacing: .4em; color: #ffd1da; font-weight: 700; font-size: clamp(12px, 1.8vw, 22px); }
+  button { font: 700 clamp(14px, 1.8vw, 22px) 'Rajdhani', sans-serif; letter-spacing: .25em; color: #fff; background: rgba(255,42,85,.18);
+    border: 2px solid var(--red); border-radius: 999px; padding: .7em 1.8em; cursor: pointer; box-shadow: 0 0 24px rgba(255,42,85,.45); }
+  button:hover { background: rgba(255,42,85,.35); }
+  button:disabled { opacity: .5; cursor: wait; }
+  button:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+  #bar { position: absolute; left: 0; bottom: 0; height: 3px; background: var(--red); box-shadow: 0 0 10px var(--red); width: 0; }
+  #ctrl { position: absolute; right: 12px; bottom: 10px; display: flex; gap: 8px; opacity: 0; transition: opacity .3s; }
+  #frame:hover #ctrl { opacity: 1; }
+  #ctrl button { padding: .35em .9em; font-size: 13px; letter-spacing: .15em; }
+</style>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.min.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+} }
+</script>
+<div id="stage">
+  <div id="frame">
+    <canvas id="gl"></canvas>
+    <canvas id="ov"></canvas>
+    <div id="bar"></div>
+    <div id="ctrl"><button id="pause">PAUSE</button><button id="replay">REJOUER</button></div>
+    <div id="ui">
+      <div>
+        <h1>LE DINOSAURE</h1>
+        <p>ÉDITION MYTHIQUE</p>
+        <button id="go" disabled>CHARGEMENT…</button>
+      </div>
+    </div>
+  </div>
+</div>
+<audio id="music" src="audio/bande_son.mp3" preload="auto"></audio>
+<script type="module">
+import { createFilm } from './film.js';
+
+const capture = new URLSearchParams(location.search).has('capture');
+const gl = document.getElementById('gl'), ovc = document.getElementById('ov');
+const go = document.getElementById('go'), ui = document.getElementById('ui'), bar = document.getElementById('bar');
+const music = document.getElementById('music');
+
+await Promise.all(['700 40px Cinzel', '900 40px Cinzel', '600 20px Rajdhani', '700 20px Rajdhani'].map(f => document.fonts.load(f)));
+const film = await createFilm({ canvas: gl, onProgress: p => (go.textContent = `CHARGEMENT ${Math.round(p * 100)} %`) });
+
+if (capture) {
+  ui.remove();
+  window.film = film;
+  window.filmReady = true;
+} else {
+  // résolution interne adaptée à l'écran (max 1080p)
+  const fit = () => {
+    const r = document.getElementById('frame').getBoundingClientRect();
+    const w = Math.min(1920, Math.round(r.width * Math.min(devicePixelRatio, 2)));
+    film.setSize(w, Math.round(w * 9 / 16));
+    ovc.width = film.overlay.width; ovc.height = film.overlay.height;
+  };
+  fit(); addEventListener('resize', fit);
+  const octx = ovc.getContext('2d');
+  let playing = false, t0 = 0, paused = false, pausedAt = 0;
+  const now = () => (music.readyState >= 2 && !music.error && !music.paused ? music.currentTime : (performance.now() - t0) / 1000);
+  function frame() {
+    let t = paused ? pausedAt : now();
+    if (t >= film.duration) { t = film.duration - .01; playing = false; ui.classList.remove('hidden'); go.textContent = '▶ REVOIR'; }
+    film.render(t);
+    octx.clearRect(0, 0, ovc.width, ovc.height); octx.drawImage(film.overlay, 0, 0);
+    bar.style.width = (t / film.duration * 100) + '%';
+    if (playing) requestAnimationFrame(frame);
+  }
+  function start() {
+    ui.classList.add('hidden'); paused = false;
+    t0 = performance.now(); music.currentTime = 0; music.play().catch(() => {});
+    if (!playing) { playing = true; requestAnimationFrame(frame); }
+  }
+  film.render(0.01);
+  go.disabled = false; go.textContent = '▶ LANCER LA BANDE-ANNONCE';
+  go.onclick = start;
+  document.getElementById('replay').onclick = start;
+  document.getElementById('pause').onclick = e => {
+    if (!playing) return;
+    paused = !paused;
+    if (paused) { pausedAt = now(); music.pause(); e.target.textContent = 'LECTURE'; }
+    else { t0 = performance.now() - pausedAt * 1000; music.currentTime = pausedAt; music.play().catch(() => {}); e.target.textContent = 'PAUSE'; }
+  };
+}
+</script>
