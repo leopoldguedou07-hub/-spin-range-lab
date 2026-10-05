@@ -3,15 +3,18 @@
 import numpy as np, subprocess, wave, os
 
 SR = 44100
-DUR = 53.0
+DUR = 65.0
 N = int(SR * DUR)
 t = np.arange(N) / SR
 L = np.zeros(N); R = np.zeros(N)
 rng = np.random.default_rng(3)
 
 
+SHIFT = 0.0   # décalage appliqué aux sections après la séquence « jeu »
+
+
 def at(t0, sig, gain=1.0, pan=0.0):
-    i = int(t0 * SR)
+    i = int((t0 + SHIFT) * SR)
     if i >= N: return
     s = sig[: N - i] * gain
     L[i:i + len(s)] += s * np.sqrt((1 - pan) / 2) * 1.41
@@ -102,11 +105,8 @@ air = lp_fft(rng.standard_normal(N), 700, 80) * np.clip(t / 3, 0, 1) * np.clip((
 at(0, air, .035)
 
 A, C, D, E, F, G = 110, 130.81, 146.83, 164.81, 174.61, 196
-pad(0, 7.6, [A / 2, E / 2, A], .05, .7)
-pad(4.5, 20.2, [A / 2, A, C, E], .07)
-pad(20, 32.7, [F / 2, F, A, C], .07)
-pad(32.5, 45.2, [D / 2, D, F, A], .06, .8)
-pad(45, 53, [A / 2, A, C * 2 ** (1 / 12), E, A * 2], .08, 1.2)  # la majeur pour finir
+pad(0, 7.8, [A / 2, E / 2, A], .05, .7)
+pad(7.5, 18.2, [A / 2, C, E, G], .045, 1.1)
 
 # ---------------------------------------------------------------- intro
 for b in [.9, 1.22, 2.4, 2.72, 3.85, 4.12]:
@@ -114,6 +114,49 @@ for b in [.9, 1.22, 2.4, 2.72, 3.85, 4.12]:
 at(2.5, riser(2.0), .35)
 at(TITLE := 4.5, boom(4), .95)
 at(4.5, bell(A * 2, 3), .12, -.4); at(4.53, bell(E * 2, 3), .1, .4)
+
+# ---------------------------------------------------------------- images du jeu (7.5 -> 19.5)
+def kick():
+    n = int(.4 * SR); tt = np.arange(n) / SR
+    return np.sin(2 * np.pi * np.cumsum(45 + 110 * np.exp(-tt * 30)) / SR) * env(n, .002, .14)
+
+
+def hat():
+    n = int(.08 * SR)
+    return lp_fft(rng.standard_normal(n), 14000, 6000) * env(n, .001, .02)
+
+
+def bass(f):
+    n = int(.45 * SR); tt = np.arange(n) / SR
+    return np.tanh(2 * np.sin(2 * np.pi * f * tt)) * env(n, .005, .18) * .6
+
+
+at(7.15, whoosh(.7), .55, .4)
+bassline = [A / 4, A / 4, C / 2, A / 4, G / 4, G / 4, E / 4, G / 4]
+b = 0
+x = 7.5
+while x < 17.95:
+    at(x, kick(), .75)
+    at(x + .25, hat(), .22, .4)
+    if b % 2 == 0: at(x, bass(bassline[(b // 2) % 8] * 2), .35)
+    b += 1; x += .5
+for c in [9.3, 10.8, 12.3, 14.6, 16.8, 18.0]:
+    at(c - .35, whoosh(.6), .45, (c % 2) - .5)
+at(15.3, boom(2.5, 140, 40), .9)
+dirt = (rng.random(int(.8 * SR)) > .997) * rng.standard_normal(int(.8 * SR))
+at(15.32, lp_fft(dirt, 6000), 1.5, .2)
+at(16.85, blip(1200), .18); at(16.95, blip(1600), .16)
+for i, f in enumerate([E * 2, A * 2, C * 4, E * 4]):
+    at(18.0 + i * .07, bell(f, 1.8), .12, (i - 1.5) / 2)
+at(17.9, riser(1.6), .4)
+for hb in [18.55, 18.8]:
+    at(hb, heartbeat(), .9)
+
+SHIFT = 12.0
+pad(7.4, 20.2, [A / 2, A, C, E], .07)
+pad(20, 32.7, [F / 2, F, A, C], .07)
+pad(32.5, 45.2, [D / 2, D, F, A], .06, .8)
+pad(45, 53, [A / 2, A, C * 2 ** (1 / 12), E, A * 2], .08, 1.2)  # la majeur pour finir
 
 # ---------------------------------------------------------------- mammouth
 at(7.1, whoosh(), .5, -.5)

@@ -96,6 +96,7 @@ if (capture) {
     adapt(ts);
     let t = paused ? pausedAt : now();
     if (t >= film.duration) { t = film.duration - .01; playing = false; ui.classList.remove('hidden'); go.textContent = '▶ REVOIR'; }
+    film.sync(t, playing && !paused);
     film.render(t);
     octx.clearRect(0, 0, ovc.width, ovc.height); octx.drawImage(film.overlay, 0, 0);
     bar.style.width = (t / film.duration * 100) + '%';

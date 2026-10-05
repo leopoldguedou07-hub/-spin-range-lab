@@ -16,12 +16,19 @@ const W = +(args.w || 1920), FPS = +(args.fps || 30);
 const threeDir = join(here, 'node_modules', 'three');
 const chrome = process.env.CHROME || '/opt/pw-browsers/chromium-1194/chrome-linux/chrome';
 
-const types = { '.html': 'text/html', '.js': 'text/javascript', '.glb': 'model/gltf-binary', '.woff2': 'font/woff2', '.mp3': 'audio/mpeg', '.json': 'application/json', '.jpg': 'image/jpeg' };
+const types = { '.html': 'text/html', '.js': 'text/javascript', '.glb': 'model/gltf-binary', '.woff2': 'font/woff2', '.mp3': 'audio/mpeg', '.json': 'application/json', '.jpg': 'image/jpeg', '.webm': 'video/webm' };
 const server = createServer(async (req, res) => {
   const p = join(here, decodeURIComponent(req.url.split('?')[0]));
   let body;
   try { body = await readFile(p); } catch { res.writeHead(404); res.end(); return; }
-  res.writeHead(200, { 'content-type': types[extname(p)] || 'application/octet-stream' }); res.end(body);
+  const type = types[extname(p)] || 'application/octet-stream';
+  const m = /bytes=(\d*)-(\d*)/.exec(req.headers.range || '');
+  if (m) {   // requêtes partielles : nécessaires pour se déplacer dans la vidéo
+    const start = m[1] ? +m[1] : 0, end = m[2] ? +m[2] : body.length - 1;
+    res.writeHead(206, { 'content-type': type, 'accept-ranges': 'bytes', 'content-range': `bytes ${start}-${end}/${body.length}`, 'content-length': end - start + 1 });
+    res.end(body.subarray(start, end + 1)); return;
+  }
+  res.writeHead(200, { 'content-type': type, 'accept-ranges': 'bytes', 'content-length': body.length }); res.end(body);
 }).listen(0);
 const port = server.address().port;
 
@@ -40,10 +47,13 @@ await page.evaluate(w => window.film.setSize(w, Math.round(w * 9 / 16)), W);
 const grab = async t => Buffer.from((await page.evaluate(t => window.film.capture(t, .95), t)).split(',')[1], 'base64');
 await mkdir(join(here, 'out'), { recursive: true });
 
-if (args.stills) {
+if (args.debug) {
+  await grab(10);
+  console.log(await page.evaluate(() => window.film.debug()));
+} else if (args.stills) {
   for (const t of String(args.stills).split(',').map(Number)) {
     const t0 = Date.now();
-    await writeFile(join(here, 'out', `still_${t.toFixed(2)}.jpg`), await grab(t));
+    await writeFile(join(here, 'out', args.dir || '', `still_${t.toFixed(2)}.jpg`), await grab(t));
     console.log(`t=${t} ${Date.now() - t0} ms`);
   }
 } else {

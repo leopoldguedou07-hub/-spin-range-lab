@@ -10,7 +10,19 @@ import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 
-export const DURATION = 53;
+// séquence « images du jeu » insérée après le titre ; le reste est décalé de PLN secondes
+const PL0 = 7.5, PLN = 12;
+export const DURATION = 53 + PLN;
+// crop = [x, y, largeur] en coordonnées normalisées de la capture (haut-gauche), début -> fin du plan
+const CLIPS = [
+  { a: 7.5, b: 9.3, c0: [.0, .0, .44], c1: [.04, .03, .38], kick: '01 · EXPLORE', cap: 'LE DÉSERT ANCIEN', dust: 1 },
+  { a: 9.3, b: 10.8, c0: [.22, .04, .52], c1: [.26, .07, .46], kick: '02 · TRAVERSE', cap: 'LES DUNES ROUGES', dust: 1 },
+  { a: 10.8, b: 12.3, c0: [.08, .0, .76], c1: [.12, .03, .66], kick: '03 · DÉCOUVRE', cap: 'LES PYRAMIDES OUBLIÉES', dust: .7 },
+  { a: 12.3, b: 14.6, c0: [.14, .2, .66], c1: [.22, .26, .54], kick: '04 · CHERCHE', cap: 'LE BON ENDROIT…', dust: .4 },
+  { a: 14.6, b: 16.8, c0: [.2, .22, .6], c1: [.35, .37, .4], kick: '05 · CREUSE', cap: '…ET CREUSE !', dig: 15.3, dust: .4 },
+  { a: 16.8, b: 18.0, c0: [.19, .18, .62], c1: [.22, .21, .56], kick: '06 · EXTRAIS', cap: 'COMPÉTENCE OU CHANCE ?', top: true },
+  { a: 18.0, b: 19.5, c0: [.14, .13, .72], c1: [.27, .28, .46], final: true },
+];
 const TL = {
   title: 4.5,
   mam: 7.5, mamBurst: 9.6, mamStamp: 12.5,
@@ -623,6 +635,20 @@ function brackets(c, a) {
   c.restore();
 }
 
+function dust2d(c, t, a, rgb = '255,210,150') {
+  if (a <= .002) return;
+  c.save();
+  c.globalCompositeOperation = 'lighter';
+  const R = rng(99);
+  for (let i = 0; i < 90; i++) {
+    const x0 = R() * 1920, y0 = R() * 1080, sp = 20 + R() * 70, sz = 1 + R() * 3.5, ph = R() * 6.28;
+    const x = (x0 + t * sp * 1.6) % 2000 - 40, y = (y0 - t * sp * .35 + Math.sin(t + ph) * 12 + 1080) % 1080;
+    c.fillStyle = `rgba(${rgb},${a * (.25 + .5 * R())})`;
+    c.beginPath(); c.arc(x, y, sz, 0, 6.283); c.fill();
+  }
+  c.restore();
+}
+
 function hudTop(c, t, a, left, right) {
   if (a <= .002) return;
   txt(c, left, 130, 112, { family: 'Rajdhani', weight: 600, size: 22, ls: 6, color: 'rgba(243,231,207,.75)', align: 'left', alpha: a });
@@ -773,8 +799,38 @@ export async function createFilm({ canvas, base = '.', onProgress = () => {} }) 
   const holo = makeHolo(mos.mesh.geometry, mos.u); mos.mesh.add(holo);
   mos.mesh.add(scan.mesh);
 
+  // ----- plan « images du jeu » : quad plein écran texturé par la vidéo
+  const video = document.createElement('video');
+  video.muted = true; video.playsInline = true; video.preload = 'auto'; video.loop = false;
+  video.width = 1280; video.height = 720;   // three lit width/height pour dimensionner la texture
+  video.src = new URL(`${base}/plates.webm`, location.href).href;
+  const videoOk = await new Promise(r => {
+    if (video.readyState >= 2) return r(true);
+    video.addEventListener('loadeddata', () => r(true), { once: true });
+    video.addEventListener('error', () => r(false), { once: true });
+    setTimeout(() => r(false), 10000);
+  });
+  const vtex = new THREE.Texture(video);
+  vtex.colorSpace = THREE.SRGBColorSpace; vtex.minFilter = vtex.magFilter = THREE.LinearFilter; vtex.generateMipmaps = false;
+  const plateU = { tex: { value: vtex }, uCrop: { value: new THREE.Vector3(0, 0, 1) }, uShake: { value: new THREE.Vector2() }, uDark: { value: 0 }, uOk: { value: videoOk ? 1 : 0 } };
+  const plateScene = new THREE.Scene();
+  const plateCam = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+  plateScene.add(new THREE.Mesh(new THREE.PlaneGeometry(2, 2), new THREE.ShaderMaterial({
+    uniforms: plateU, depthTest: false, depthWrite: false,
+    vertexShader: `varying vec2 vUv; void main(){ vUv=uv; gl_Position=vec4(position.xy,0.,1.); }`,
+    fragmentShader: `uniform sampler2D tex; uniform vec3 uCrop; uniform vec2 uShake; uniform float uDark,uOk; varying vec2 vUv;
+void main(){
+  vec2 uv=vec2(uCrop.x,1.-uCrop.y-uCrop.z)+vUv*uCrop.z+uShake;
+  vec3 c=texture2D(tex,clamp(uv,.001,.999)).rgb*uOk;
+  c=pow(c,vec3(1.35))*vec3(1.06,.96,.86);     // contraste + chaleur
+  float l=dot(c,vec3(.3,.59,.11)); c=mix(vec3(l),c,1.15);
+  gl_FragColor=vec4(c*(1.-uDark),1.);
+}`,
+  })));
+
   const composer = new EffectComposer(renderer);
-  composer.addPass(new RenderPass(scene, camera));
+  const renderPass = new RenderPass(scene, camera);
+  composer.addPass(renderPass);
   const bloom = new UnrealBloomPass(new THREE.Vector2(960, 540), .9, .55, .82);
   composer.addPass(bloom);
   composer.addPass(new OutputPass());
@@ -838,6 +894,47 @@ export async function createFilm({ canvas, base = '.', onProgress = () => {} }) 
 
   // ----------------------------------------------------------- une image
   function update(t) {
+    if (t >= PL0 && t < PL0 + PLN) return updatePlate(t);
+    renderPass.scene = scene; renderPass.camera = camera;
+    return updateCore(t < PL0 ? t : t - PLN);
+  }
+
+  function updatePlate(t) {
+    const gr = grade.uniforms;
+    renderPass.scene = plateScene; renderPass.camera = plateCam;
+    vtex.needsUpdate = video.readyState >= 2;
+    const ci = CLIPS.findIndex(c => t >= c.a && t < c.b), cl = CLIPS[ci];
+    const k = E.io(inv(cl.a, cl.b, t));
+    const cr = cl.c0.map((v, i) => lerp(v, cl.c1[i], k));
+    // impact du coup de pioche
+    const dig = cl.dig ? hit(t, cl.dig, .02, .35) : 0;
+    const sh = dig * .012 + .0015;
+    plateU.uCrop.value.set(cr[0], cr[1], cr[2]);
+    plateU.uShake.value.set(Math.sin(t * 47.3) * sh * cr[2], Math.sin(t * 53.9 + 1) * sh * cr[2]);
+    plateU.uDark.value = cl.final ? inv(18.4, 19, t) * .8 : 0;
+    gr.uTime.value = t; gr.uLB.value = .1; gr.uFade.value = 0; gr.uSat.value = 1.05; gr.uTint.value.setRGB(1, 1, 1);
+    gr.uVig.value = 1; gr.uGrain.value = .05; gr.uFlashCol.value.setRGB(1, .8, .6);
+    // coupe : flash + flou de zoom à chaque changement de plan
+    let cut = 0;
+    for (const c of CLIPS) cut = Math.max(cut, hit(t, c.a, .001, .12));
+    const out = (1 - inv(19.0, 19.5, t)) ;
+    gr.uZoom.value = cut * .35 + dig * .3 + (t > 19.2 ? E.in(inv(19.2, 19.5, t)) * .5 : 0) + (t < 7.85 ? (1 - inv(7.5, 7.85, t)) * .5 : 0);
+    gr.uFlash.value = cut * .55 + dig * .9 + (t < 7.85 ? Math.pow(1 - inv(7.5, 7.85, t), 3) * .9 : 0);
+    gr.uCA.value = .003 + cut * .02 + dig * .03;
+    bloom.strength = .3 + dig * .8; bloom.threshold = .95; bloom.radius = .4;
+    renderer.toneMappingExposure = 1;
+    const ov = { t, plate: { cl, ci, t, k, cr, dig, out } };
+    ov.hud = 1; ov.hudL = 'EN JEU · DÉSERT ANCIEN'; ov.hudR = 'LE DINOSAURE · ROBLOX';
+    if (cl.dig) {
+      const px = (.565 - cr[0]) / cr[2] * 1920, py = (.585 - cr[1]) / cr[2] * 1080;
+      ov.digPt = [px, py];
+      ov.reticle = t < cl.dig ? { p: [px, py], a: inv(cl.a + .1, cl.a + .4, t), label: 'SIGNAL FOSSILE DÉTECTÉ', sub: 'ICI !', prog: inv(cl.a, cl.dig, t) } : null;
+    }
+    ov.whiteOut = t > 19.2 ? E.in(inv(19.2, 19.5, t)) * .85 : 0;
+    return ov;
+  }
+
+  function updateCore(t) {
     const G = ground.u, gr = grade.uniforms;
     // valeurs par défaut
     [mam, ser, mos].forEach(resetCreature);
@@ -1205,6 +1302,7 @@ export async function createFilm({ canvas, base = '.', onProgress = () => {} }) 
     c.setTransform(1, 0, 0, 1, 0, 0);
     c.clearRect(0, 0, W, H);
     c.setTransform(W / 1920, 0, 0, H / 1080, 0, 0);
+    if (ov.plate) drawPlate(c, ov);
     if (ov.whiteOut) { c.save(); c.globalAlpha = E.in(ov.whiteOut); c.fillStyle = '#e8fbff'; c.fillRect(0, 0, 1920, 1080); c.restore(); }
     if (ov.flare && ov.flare[2] && ov.flare[3] > 0) flare(c, ov.flare[0], ov.flare[1], ov.flare[3], ov.flare[4]);
     if (ov.hud) { brackets(c, ov.hud * .8); hudTop(c, t, ov.hud, ov.hudL, ov.hudR); }
@@ -1261,6 +1359,43 @@ export async function createFilm({ canvas, base = '.', onProgress = () => {} }) 
     }
   }
 
+  function drawPlate(c, ov) {
+    const { cl, t, dig } = ov.plate;
+    if (cl.dust) dust2d(c, t, cl.dust * .8);
+    if (ov.digPt && t >= cl.dig) {
+      const lt = t - cl.dig, [x, y] = ov.digPt;
+      c.save(); c.globalCompositeOperation = 'lighter';
+      for (const [d, col] of [[0, '255,170,80'], [.12, '255,60,90']]) {
+        const r = (lt - d) * 1400; if (r <= 0) continue;
+        c.strokeStyle = `rgba(${col},${Math.max(0, 1 - (lt - d) * 1.6)})`; c.lineWidth = 10 * Math.max(0, 1 - (lt - d));
+        c.beginPath(); c.ellipse(x, y, r, r * .45, 0, 0, 6.283); c.stroke();
+      }
+      c.restore();
+      flare(c, x, y, dig * 1.6);
+    }
+    // légende : petit sur-titre + grande phrase
+    if (cl.cap) {
+      const lt = t - cl.a, d = cl.b - cl.a;
+      const a = inv(.05, .3, lt) * (1 - inv(d - .2, d, lt));
+      const ls = lerp(28, 8, E.out(inv(0, .6, lt)));
+      const Y = cl.top ? 200 : 860;
+      c.save(); c.globalAlpha = a; {
+        const g = c.createLinearGradient(0, Y - 170, 0, Y + 110);
+        g.addColorStop(0, 'rgba(10,5,4,0)'); g.addColorStop(.5, 'rgba(10,5,4,.55)'); g.addColorStop(1, 'rgba(10,5,4,0)');
+        c.fillStyle = g; c.fillRect(0, Y - 170, 1920, 280); } c.restore();
+      txt(c, cl.kick, 960, Y - 65 - (1 - E.out(inv(0, .4, lt))) * 20, { family: 'Rajdhani', weight: 700, size: 30, ls: 12, color: '#ffd1da', glow: 14, glowColor: RED, alpha: a });
+      txt(c, cl.cap, 960, Y, { size: cl.cap.length > 18 ? 66 : 80, weight: 900, ls, grad: ['#fffaf0', IVORY, '#d8b98a'], glow: 26, glowColor: 'rgba(0,0,0,.9)', glow2: 40, alpha: a, blur: (1 - inv(0, .25, lt)) * 10 });
+    }
+    if (cl.final) {
+      const a = inv(18.5, 18.75, t);
+      const j = t > 18.75 && t < 19.0 ? Math.sin(t * 160) * 8 * (1 - inv(18.75, 19, t)) : 0;
+      txt(c, 'ET SI C\'ÉTAIT UN…', 960, 430, { size: 52, weight: 700, ls: 14, color: IVORY, alpha: a, blur: (1 - inv(18.5, 18.7, t)) * 8 });
+      const b = inv(18.75, 18.85, t);
+      rays(c, 960, 560, 1000, 24, t * .4, '255,50,85', .3 * b);
+      txt(c, 'MYTHIQUE ?', 960 + j, 560, { size: 150, weight: 900, ls: 12, scale: lerp(1.6, 1, E.outX(inv(18.75, 19.05, t))), grad: ['#fff2f5', '#ff6b8a', '#ff1f4f', '#8d0024'], glow: 40, glow2: 90, glowColor: RED, alpha: b, stroke: 'rgba(255,255,255,.5)', lw: 1.5 });
+    }
+  }
+
   let lastOv = null;
   function render(t) {
     lastOv = update(t);
@@ -1270,7 +1405,28 @@ export async function createFilm({ canvas, base = '.', onProgress = () => {} }) 
 
   // image composite (3D + textes) pour l'export vidéo
   const cap = document.createElement('canvas');
-  function capture(t, q = .93) {
+  async function seekVideo(st) {
+    if (!videoOk || Math.abs(video.currentTime - st) < 1e-4) return;
+    await new Promise(r => {
+      const done = () => { video.removeEventListener('seeked', done); r(); };
+      video.addEventListener('seeked', done);
+      video.currentTime = st;
+      setTimeout(done, 4000);
+    });
+    // attendre que l'image décodée soit vraiment prête
+    if (video.requestVideoFrameCallback) await new Promise(r => { video.requestVideoFrameCallback(() => r()); setTimeout(r, 600); });
+  }
+  // lecture temps réel : garde la vidéo calée sur l'horloge du film
+  function sync(t, playing) {
+    if (!videoOk) return;
+    const st = clamp(t - PL0, 0, PLN - .04);
+    const on = t >= PL0 - .4 && t < PL0 + PLN;
+    if (!on || !playing) { if (!video.paused) video.pause(); if (on && Math.abs(video.currentTime - st) > .04) video.currentTime = st; return; }
+    if (video.paused) video.play().catch(() => {});
+    if (Math.abs(video.currentTime - st) > .15) video.currentTime = st;
+  }
+  async function capture(t, q = .93) {
+    if (t >= PL0 && t < PL0 + PLN) await seekVideo(Math.min(t - PL0 + .001, PLN - .02));
     render(t);
     cap.width = W; cap.height = H;
     const x = cap.getContext('2d');
@@ -1279,5 +1435,5 @@ export async function createFilm({ canvas, base = '.', onProgress = () => {} }) 
     return cap.toDataURL('image/jpeg', q);
   }
 
-  return { render, capture, setSize, overlay, renderer, duration: DURATION };
+  return { render, capture, sync, setSize, overlay, renderer, duration: DURATION, debug: () => ({ rs: video.readyState, ok: videoOk, ct: video.currentTime, err: video.error && video.error.message }) };
 }
